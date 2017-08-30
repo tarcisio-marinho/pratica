@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1503723781 source:/home/tarcisio/Desktop/prog/alunos.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+
+1503723575 /home/tarcisio/Desktop/prog/types.h
+
+1503780924 /home/tarcisio/Desktop/prog/arvore.h
+	<stdio.h>
+	"types.h"
+
+1503725151 source:/home/tarcisio/Desktop/prog/arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"types.h"
+
+1503723457 source:/home/tarcisio/Desktop/prog/main.c
+	<stdio.h>
+	<stdlib.h>
+	"alunos.h"
+
+1503723509 /home/tarcisio/Desktop/prog/alunos.h
+	<stdio.h>
+	"types.h"
+
