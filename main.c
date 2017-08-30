@@ -37,7 +37,7 @@ int main(){
     printf("1) Alunos \n");
     printf("2) Disciplinas \n");
     printf("3) Matrícula \nEscolha: ");
-    scanf("%d", &op);
+    scanf("%d", &op);fflush(stdin);
 
     if(op == 1){
       alunoss(al, &alunos, posicoes);
@@ -62,31 +62,40 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
     printf("1) cadastrar aluno\n");
     printf("2) alterar aluno\n");
     printf("3) exibir aluno\n");
-    printf("4) remover aluno \nEscolha: ");
-    scanf("%d", &op);
+    printf("4) remover aluno \n5) voltar\nEscolha: ");
+    scanf("%d", &op);fflush(stdin);
 
     if(op == 1){
       cadastrar_aluno(arq, alunos, pos);
     }
+
     else if(op == 2){
       printf("Insira a matricula do aluno: ");
       fgets(matricula, 10, stdin);
       alterar_aluno(matricula, arq, *alunos);
     }
+
     else if(op == 3){
       printf("Insira a matricula do aluno: ");
       fgets(matricula, 10, stdin);
       exibir_aluno(matricula, arq, *alunos);
     }
+
     else if(op == 4){
       printf("Insira a matricula do aluno: ");
       fgets(matricula, 10, stdin);
       remover_aluno(matricula, arq, alunos);
     }
-    else{
+
+    else if(op == 5){
       manutencao_aluno(arq);
       return;
     }
+
+    else{
+      printf("Opção inválida\n");
+    }
+
   }
 }
 /*
