@@ -1,4 +1,4 @@
-
+/*
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
@@ -77,3 +77,4 @@ int valida_qtd_total_vagas(int total){
 int valida_data_matricula(char data[]){
 
 }
+*/

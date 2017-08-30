@@ -36,7 +36,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
 
   fseek(arq, 0, 2); // insere no final do arquivo
   status = fwrite(&aluno, sizeof(Aluno), 1, arq);
-  inserir_arvore_aluno(*raiz, matricula, pos+1);
+  inserir_arvore_aluno(raiz, matricula, pos+1);
 
   if(status != 1)  printf("\nErro ao cadastrar aluno\n");
   else  printf("\nCadastrado\n");
@@ -65,7 +65,7 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 
 void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
-  Aluno al;
+  Aluno *al;
   pos = busca_arvore_aluno(raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
@@ -83,15 +83,15 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 
 void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
   int pos, status;
-  Aluno al;
-  pos = busca_arvore_aluno(raiz, matricula);
+  Aluno *al;
+  pos = busca_arvore_aluno(*raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
     status = fread(&al, sizeof(Aluno), 1, arq);
-    al->info = 0;
+    al->status = 0;
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
-    remover_arvore_aluno(*raiz, matricula);
+    remover_arvore_aluno(raiz, matricula);
     printf("Removido\n");
   }else  printf("Aluno não cadastrado");
 }
@@ -108,7 +108,7 @@ int verifica_matricula(char matricula[], NOaluno *raiz){
 }
 
 void manutencao_aluno(FILE *arq){
-  Aluno al;
+  Aluno *al;
   int status;
   FILE *arq2;
   arq2 = fopen("alunos2.dat", "w+b");
@@ -125,6 +125,6 @@ void manutencao_aluno(FILE *arq){
   }
   fclose(arq);
   fclose(arq2);
-  fremove("alunos.dat");
-  frename("alunos2.dat", "alunos.dat");
+  remove("alunos.dat");
+  rename("alunos2.dat", "alunos.dat");
 }

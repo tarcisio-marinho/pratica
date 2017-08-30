@@ -9,8 +9,8 @@
 
 void remove_tudo_aluno(NOaluno ** raiz){
   if (raiz != NULL){
-    remove_tudo_aluno((*raiz)->esq);
-    remove_tudo_aluno((*raiz)->dir);
+    remove_tudo_aluno(&(*raiz)->esq);
+    remove_tudo_aluno(&(*raiz)->dir);
     remover_arvore_aluno(*raiz);
   }
 }
@@ -22,6 +22,16 @@ int remover_arvore_aluno(NOaluno **raiz, char matricula[]){
     if (strcmp(matricula, (*raiz)->matricula) < 0)  remover_arvore_aluno(&((*raiz)->esq),matricula);
     else  remover_arvore_aluno(&((*raiz)->dir),matricula);
   }
+}
+
+NOaluno * maior_aluno(NOaluno ** raiz){
+  NOaluno * aux;
+  aux = *raiz;
+  if (aux->dir == NULL){
+    *raiz = (*raiz)->esq;
+    return (aux);
+  }
+  else  return maior_aluno(&((*raiz)->dir));
 }
 
 void remover_no_aluno(NOaluno **raiz){
@@ -40,15 +50,7 @@ void remover_no_aluno(NOaluno **raiz){
   free (pos);
 }
 
-NOaluno * maior_aluno(NOaluno ** raiz){
-  NOaluno * aux;
-  aux = *raiz;
-  if (aux->dir == NULL){
-    *raiz = (*raiz)->esq;
-    return (aux);
-  }
-  else  return maior_aluno(&((*raiz)->dir));
-}
+
 
 
 void inserir_arvore_aluno(NOaluno **raiz, char matricula[], int pos){
@@ -78,7 +80,7 @@ int busca_arvore_aluno(NOaluno *raiz, char matricula[]){ // retorna a posicao
 
 int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
   int status, contador = -1;
-  Aluno al;
+  Aluno *al;
   fseek(alunos, 0, 0);
   while(1){
     status = fread(&al, sizeof(Aluno), 1, alunos);
@@ -86,7 +88,7 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
       if(!feof(alunos)){
           break;
       }else{
-          break
+          break;
       }
     }else{
       contador++;
@@ -101,20 +103,31 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
 
 void remove_tudo_disciplina(NOdisciplina ** raiz){
   if (raiz != NULL){
-    remove_tudo_disciplina((*raiz)->esq);
-    remove_tudo_disciplina((*raiz)->dir);
+    remove_tudo_disciplina(&(*raiz)->esq);
+    remove_tudo_disciplina(&(*raiz)->dir);
     remover_arvore_disciplina(raiz);
   }
 }
 
 int remover_arvore_disciplina(NOdisciplina **raiz, char codigo[]){
   if (*raiz == NULL)  return -1; // não achou
-  else if (strcmp((*raiz)->codigo, codigo) == 0)  remover_no(&(*raiz));
+  else if (strcmp((*raiz)->codigo, codigo) == 0)  remover_no_disciplina(&(*raiz));
   else{
     if (strcmp((*raiz)->codigo, codigo) > 0)  remover_arvore_disciplina(&((*raiz)->esq),codigo);
     else  remover_arvore_disciplina(&((*raiz)->dir),codigo);
   }
 }
+
+NOdisciplina * maior_disciplina(NOdisciplina **raiz){
+  NOdisciplina * aux;
+  aux = *raiz;
+  if (aux->dir == NULL){
+    *raiz = (*raiz)->esq;
+    return (aux);
+  }
+  else  return maior_disciplina(&((*raiz)->dir));
+}
+
 
 void remover_no_disciplina(NOdisciplina **raiz){
   NOdisciplina * pos;
@@ -130,16 +143,6 @@ void remover_no_disciplina(NOdisciplina **raiz){
     strcpy((*raiz)->codigo, pos->codigo);
   }
   free (pos);
-}
-
-NOdisciplina * maior_disciplina(NOdisciplina **raiz){
-  NOdisciplina * aux;
-  aux = *raiz;
-  if (aux->dir == NULL){
-    *raiz = (*raiz)->esq;
-    return (aux);
-  }
-  else  return maior_disciplina(&((*raiz)->dir));
 }
 
 

@@ -23,7 +23,7 @@ int main(){
     al = fopen("alunos.dat", "w+b");
     posicoes = 0;
   }else{
-    posicoes = montar_arvore_aluno(&alunos);
+    posicoes = montar_arvore_aluno(&alunos, al);
   }
 /*
   dis = fopen("disciplinas.dat","r+b");
