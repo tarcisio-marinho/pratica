@@ -4,8 +4,8 @@
 #include "arvore.h"
 #include "types.h"
 
-//#include "disciplinas/disciplinas.h"
-//#include "matricula/matricula.h"
+//#include "disciplinas.h"
+//#include "matricula.h"
 
 void alunoss(FILE *arq, NOaluno **alunos, int pos);
 //void disciplinas(FILE *arq, NOdisciplina * &disciplinas);
@@ -21,10 +21,11 @@ int main(){
   al = fopen("alunos.dat","r+b");
   if(al == NULL){
     al = fopen("alunos.dat", "w+b");
-    posicoes = 0;
+    posicoes = -1;
   }else{
     posicoes = montar_arvore_aluno(&alunos, al);
   }
+
 /*
   dis = fopen("disciplinas.dat","r+b");
   if(al == NULL){

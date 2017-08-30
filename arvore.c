@@ -98,6 +98,17 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
   return contador;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /////// operacoes das disciplinas
 
 

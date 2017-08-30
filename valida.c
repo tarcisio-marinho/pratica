@@ -1,4 +1,4 @@
-/*
+
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
@@ -6,11 +6,11 @@
 // validacoes do aluno
 
 int valida_nome(char nome[]){
-
+    return 0;
 }
 
 int valida_matricula(char matricula[]){
-
+    return 0;
 }
 
 int valida_email(char email[]){
@@ -36,6 +36,11 @@ int valida_media(float media){
     if(media<0||media>10)    return 1;
     else    return 0;
 }
+
+
+
+
+
 
 // validacoes da disciplina
 
@@ -75,6 +80,6 @@ int valida_qtd_total_vagas(int total){
 }
 
 int valida_data_matricula(char data[]){
-
+    return 0;
 }
-*/
+

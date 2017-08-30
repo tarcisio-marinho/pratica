@@ -9,23 +9,42 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   Aluno *aluno;
   char matricula[10], nome[40], email[40], telefone[11];
   int status;
+
+  // recebe as informações e as valida
   printf("\nInsira matriula: ");
   fgets(matricula, 10, stdin);
   while (valida_matricula(matricula) != 0){
-    printf("\nmatricula inválida, insira outra: ");
+    printf("\nmatricula inválida, insira novamente: ");
     fgets(matricula, 10, stdin);
   }
+
   while (verifica_matricula(matricula) != 0){
     printf("\nmatricula já registrada, insira outra: ");
     fgets(matricula, 10, stdin);
   }
+
   printf("\nNome: ");
   fgets(nome, 40, stdin);
+  while(valida_nome(nome) != 0){
+    printf("\nNome invalido, insira novamente: ");
+    fgets(nome, 40, stdin);
+  }
+
   printf("\nemail: ");
   fgets(email, 40, stdin);
+  while(valida_email(email) != 0){
+    printf("\nemail inválido, insira novamente: ");
+    fgets(email, 40, stdin);
+  }
+
   printf("\ntelefone: ");
   fgets(telefone, 11, stdin);
+  while(valida_telefone(telefone) != 0){
+    printf("\ntelefone inválido, insira novamente: ");
+    fgets(telefone, 11, stdin);
+  }
 
+  // terminou as validações, copia para a struct e salva em arquivo
   strcpy(aluno->matricula, matricula);
   strcpy(aluno->nome, nome);
   strcpy(aluno->email, email);
@@ -34,13 +53,15 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   aluno->qtd_disciplinas_matriculado = 0;
   aluno->status = 1;
 
-  fseek(arq, 0, 2); // insere no final do arquivo
+  fseek(arq, 0, 2);
   status = fwrite(&aluno, sizeof(Aluno), 1, arq);
   inserir_arvore_aluno(raiz, matricula, pos+1);
 
   if(status != 1)  printf("\nErro ao cadastrar aluno\n");
   else  printf("\nCadastrado\n");
 }
+
+
 
 void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
@@ -63,6 +84,9 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   }else  printf("Aluno inexistente\n");
 }
 
+
+
+
 void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
   Aluno *al;
@@ -81,6 +105,11 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   }else  printf("Aluno não cadastrado\n");
 }
 
+
+
+
+
+
 void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
   int pos, status;
   Aluno *al;
@@ -96,9 +125,8 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
   }else  printf("Aluno não cadastrado");
 }
 
-int valida_matricula(NOaluno *raiz, char matricula[]){ // implementar quando ana falar as regras
-  return 0;
-}
+
+
 
 int verifica_matricula(char matricula[], NOaluno *raiz){
   int retorno;
@@ -106,6 +134,9 @@ int verifica_matricula(char matricula[], NOaluno *raiz){
   if(retorno != -1)  return 0;
   else  return 1;
 }
+
+
+
 
 void manutencao_aluno(FILE *arq){
   Aluno *al;
@@ -128,3 +159,6 @@ void manutencao_aluno(FILE *arq){
   remove("alunos.dat");
   rename("alunos2.dat", "alunos.dat");
 }
+
+
+
