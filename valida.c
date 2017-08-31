@@ -10,8 +10,20 @@ int valida_nome(char nome[]){
 }
 
 int valida_matricula(char matricula[]){
-    return 0;
+    int i, soma = 0, resto;
+    if(strlen(matricula) != 6)    return 1;
+    else{
+        for(i=0; i<strlen(matricula); i++){
+            soma += matricula[i] * pow(2, i);
+            if (isdigit(matricula[i]) == 0)    return 1;
+        }
+        resto = soma%11;
+        if(resto >=0 || soma<=9)    matricula[i+1] = resto;
+        else    matricula[i+1] = 'x';
+    }
+    return soma;
 }
+
 
 int valida_email(char email[]){
     int i, count=0;
@@ -45,17 +57,24 @@ int valida_media(float media){
 // validacoes da disciplina
 
 int valida_codigo(char codigo[]){
+    int i;
     if(strlen(codigo)!=7)    return 1;
     else{
-        if(codigo[0]<'a' || codigo[0]>'z')    return 2;
-        else if(codigo[1]<'a' || codigo[1]>'z')    return 3;
-        else if(codigo[2]<'a' || codigo[2]>'z')    return 4;
-        else if(codigo[3]<'1' || codigo[3]>'9')    return 5;
-        else if(codigo[4]<'1' || codigo[4]>'9')    return 6;
-        else if(codigo[5]<'1' || codigo[5]>'9')    return 7;
-        else if(codigo[6]<'1' || codigo[6]>'9')    return 8;
-        else    return 0;
+        for (i; i<strlen(codigo); i++){
+            if(isalnum(codigo[i]) == 0)    return 1;
+        }
+        for (i=0;i<3;i++){
+            if(isdigit(codigo[i]) == 0)    return 1;
+        }
+        for(i=3;i<7;i++){
+            if(isalpha(codigo[i]) == 0)    return 1;
+        }
     }
+    for (i=0;i<7;i++){
+      codigo[i] = toupper(codigo[i]);
+    }
+    return 0;
+
 }
 
 int valida_horario(char horario){

@@ -3,6 +3,7 @@
 #include "alunos.h"
 #include "arvore.h"
 #include "types.h"
+#include "valida.h"
 
 //#include "disciplinas.h"
 //#include "matricula.h"

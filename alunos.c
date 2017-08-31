@@ -7,7 +7,7 @@
 
 void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   Aluno *aluno;
-  char matricula[10], nome[40], email[40], telefone[11];
+  char matricula[11], nome[41], email[41], telefone[12];
   int status;
 
   // recebe as informações e as valida
