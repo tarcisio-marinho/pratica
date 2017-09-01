@@ -3,10 +3,12 @@
 #include <string.h>
 #include "types.h"
 #include "arvore.h"
+#include "alunos.h"
+#include "valida.h"
 
 
 void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
-  Aluno *aluno;
+  Aluno aluno;
   char matricula[11], nome[41], email[41], telefone[12];
   int status;
 
@@ -18,7 +20,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
     fgets(matricula, 10, stdin);
   }
 
-  while (verifica_matricula(matricula) != 0){
+  while (verifica_matricula(matricula, *raiz) != 0){
     printf("\nmatricula já registrada, insira outra: ");
     fgets(matricula, 10, stdin);
   }
@@ -45,13 +47,13 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   }
 
   // terminou as validações, copia para a struct e salva em arquivo
-  strcpy(aluno->matricula, matricula);
-  strcpy(aluno->nome, nome);
-  strcpy(aluno->email, email);
-  strcpy(aluno->telefone, telefone);
-  aluno->media = 0.0;
-  aluno->qtd_disciplinas_matriculado = 0;
-  aluno->status = 1;
+  strcpy(aluno.matricula, matricula);
+  strcpy(aluno.nome, nome);
+  strcpy(aluno.email, email);
+  strcpy(aluno.telefone, telefone);
+  aluno.media = 0.0;
+  aluno.qtd_disciplinas_matriculado = 0;
+  aluno.status = 1;
 
   fseek(arq, 0, 2);
   status = fwrite(&aluno, sizeof(Aluno), 1, arq);
@@ -75,7 +77,12 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
     printf("\nemail: ");
     fgets(email, 40, stdin);
     printf("\ntelefone: ");
-    fgets(telefone, 11, stdin);
+    fgets(telefone, 11, stdin); // VALIDACOES
+
+    strcpy(al.nome, nome);
+    strcpy(al.email, email);
+    strcpy(al.telefone, telefone);
+
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
     if(status != 1)  printf("Erro ao alterar\n");
@@ -89,18 +96,18 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 
 void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
-  Aluno *al;
+  Aluno al;
   pos = busca_arvore_aluno(raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
     status = fread(&al, sizeof(Aluno), 1, arq);
     if(status != 1)  printf("Erro ao ler");
     else{
-      printf("\nNome: %s\n", al->nome);
-      printf("Telefone: %s", al->telefone);
-      printf("Email: %s\n", al->email);
-      printf("Quantidade disciplinas matriculado: %d", al->qtd_disciplinas_matriculado);
-      printf("Media: %f", al->media);
+      printf("\nNome: %s\n", al.nome);
+      printf("Telefone: %s", al.telefone);
+      printf("Email: %s\n", al.email);
+      printf("Quantidade disciplinas matriculado: %d", al.qtd_disciplinas_matriculado);
+      printf("Media: %f", al.media);
     }
   }else  printf("Aluno não cadastrado\n");
 }
@@ -112,12 +119,12 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 
 void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
   int pos, status;
-  Aluno *al;
+  Aluno al;
   pos = busca_arvore_aluno(*raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
     status = fread(&al, sizeof(Aluno), 1, arq);
-    al->status = 0;
+    al.status = 0;
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
     remover_arvore_aluno(raiz, matricula);
@@ -131,7 +138,7 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
 int verifica_matricula(char matricula[], NOaluno *raiz){
   int retorno;
   retorno = busca_arvore_aluno(raiz, matricula);
-  if(retorno != -1)  return 0;
+  if(retorno == -1)  return 0;
   else  return 1;
 }
 
@@ -139,7 +146,7 @@ int verifica_matricula(char matricula[], NOaluno *raiz){
 
 
 void manutencao_aluno(FILE *arq){
-  Aluno *al;
+  Aluno al;
   int status;
   FILE *arq2;
   arq2 = fopen("alunos2.dat", "w+b");
@@ -151,7 +158,7 @@ void manutencao_aluno(FILE *arq){
       else  break;
 
     }else{
-      if(al->status == 1)  status = fwrite (&al, sizeof (Aluno), 1, arq2);;
+      if(al.status == 1)  status = fwrite (&al, sizeof (Aluno), 1, arq2);;
     }
   }
   fclose(arq);

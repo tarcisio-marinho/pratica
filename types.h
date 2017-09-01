@@ -30,7 +30,7 @@ typedef struct mat{
 }Matricula;
 
 typedef struct arv{
-  char matricula;
+  char matricula[11];
   int pos;
   struct arv *dir, *esq;
 }NOaluno;

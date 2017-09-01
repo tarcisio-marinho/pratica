@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include "types.h"
-
+#include"arvore.h"
 
 ///// operacoes dos alunos
 
@@ -11,7 +11,7 @@ void remove_tudo_aluno(NOaluno ** raiz){
   if (raiz != NULL){
     remove_tudo_aluno(&(*raiz)->esq);
     remove_tudo_aluno(&(*raiz)->dir);
-    remover_arvore_aluno(*raiz);
+    free(*raiz);
   }
 }
 
@@ -116,7 +116,7 @@ void remove_tudo_disciplina(NOdisciplina ** raiz){
   if (raiz != NULL){
     remove_tudo_disciplina(&(*raiz)->esq);
     remove_tudo_disciplina(&(*raiz)->dir);
-    remover_arvore_disciplina(raiz);
+    free(raiz);
   }
 }
 

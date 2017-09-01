@@ -26,37 +26,44 @@
 	<stdio.h>
 	"types.h"
 
-1504061472 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
+1504234411 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
 	<stdio.h>
 	<string.h>
 	"types.h"
 	"arvore.h"
+	"alunos.h"
+	"valida.h"
 
-1503723575 /home/tarcisio/Desktop/pratica-programacao/types.h
+1504234155 /home/tarcisio/Desktop/pratica-programacao/types.h
 
 1503816856 /home/tarcisio/Desktop/pratica-programacao/arvore.h
 	<stdio.h>
 	"types.h"
 
-1504060235 source:/home/tarcisio/Desktop/pratica-programacao/arvore.c
+1504234281 source:/home/tarcisio/Desktop/pratica-programacao/arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"types.h"
+	"arvore.h"
 
-1504061336 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+1504132088 source:/home/tarcisio/Desktop/pratica-programacao/main.c
 	<stdio.h>
 	<stdlib.h>
 	"alunos.h"
 	"arvore.h"
 	"types.h"
+	"valida.h"
 
-1503817927 /home/tarcisio/Desktop/pratica-programacao/alunos.h
+1504234231 /home/tarcisio/Desktop/pratica-programacao/alunos.h
 	<stdio.h>
 	"types.h"
 
-1504059908 source:/home/tarcisio/Desktop/pratica-programacao/valida.c
+1504234122 source:/home/tarcisio/Desktop/pratica-programacao/valida.c
 	<stdio.h>
 	<string.h>
 	<ctype.h>
+	"valida.h"
+
+1504234245 /home/tarcisio/Desktop/pratica-programacao/valida.h
 
