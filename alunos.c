@@ -145,11 +145,12 @@ int verifica_matricula(char matricula[], NOaluno *raiz){
 
 
 
-void manutencao_aluno(FILE *arq){ // ṔROBLEMA NO MANUTENÇÃO
+void manutencao_aluno(FILE *arq){
   Aluno al;
   int status;
   FILE *arq2;
   arq2 = fopen("alunos2.dat", "w+b");
+  fseek(arq, 0, 0);
   while(1){
     status = fread(&al, sizeof(Aluno), 1, arq);
     if(status != 1){
