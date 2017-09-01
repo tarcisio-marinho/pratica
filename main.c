@@ -61,7 +61,7 @@ int main(){
 
 void alunoss(FILE *arq, NOaluno **alunos, int pos){
   int op;
-  char matricula[10];
+  char matricula[11];
   system("clear");
   while (1){
     printf("1) cadastrar aluno\n");
@@ -104,9 +104,9 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
   }
 }
 
-void disciplinas(FILE *arq, NOdisciplina * &disciplinas){
+void disciplinas(FILE *arq, NOdisciplina * *disciplinas){
   int op;
-  char codigo[7];
+  char codigo[8];
   system("clear");
   while (1){
     printf("1) cadastrar disciplina\n");
@@ -116,29 +116,32 @@ void disciplinas(FILE *arq, NOdisciplina * &disciplinas){
     scanf("%d", &op);getchar();
 
     if(op == 1){
-      printf("Insira a matricula da disciplina para ser cadastrada: ");
-      fgets(codigo, 10, stdin);getchar();
-      cadastrar_disciplina(codigo);
+      cadastrar_disciplina(arq, disciplinas, pos);
     }
+
     else if(op == 2){
       printf("Insira a matricula da disciplina: ");
-      fgets(codigo, 10, stdin);getchar();
-      alterar_disciplina(codigo);
+      fgets(codigo, 7, stdin);getchar();
+      alterar_disciplina(codigo, arq, *disciplinas);
     }
+
     else if(op == 3){
       printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 10, stdin);getchar();
-      exibir_disciplina(codigo);
+      fgets(codigo, 7, stdin);getchar();
+      exibir_disciplina(codigo, arq, *disciplinas);
     }
+
     else if(op == 4){
       printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 10, stdin);getchar();
-      remover_disciplina(codigo);
+      fgets(codigo, 7, stdin);getchar();
+      remover_disciplina(codigo, arq, disciplinas);
     }
+
     else if(op == 5){
-        manutencao_disciplina(arq);
-        return;
+      manutencao_disciplina(arq);
+      return;
     }
+
     else{
       printf("Opção inválida\n");
     }
