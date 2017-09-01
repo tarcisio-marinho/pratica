@@ -37,7 +37,7 @@ int main(){
   while(1){
     printf("1) Alunos \n");
     printf("2) Disciplinas \n");
-    printf("3) Matrícula \nEscolha: ");
+    printf("3) Matrícula \n4) sair\nEscolha: ");
     scanf("%d", &op);fflush(stdin);getchar();
 
     if(op == 1){
@@ -46,8 +46,10 @@ int main(){
       //disciplinas(dis, &disciplina);
     }else if(op == 3){
       //matriculas(al, &alunos, dis, &disciplina);
-    }else{
+    }else if(op == 4){
       return 0; // aq deve ficar o codigo de manutenção
+    }else{
+        printf("\nOpção inválida\n");
     }
   }
 

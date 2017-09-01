@@ -92,7 +92,7 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
       }
     }else{
       contador++;
-      inserir_arvore_aluno(*raiz, al.matricula, contador);
+      inserir_arvore_aluno(raiz, al.matricula, contador);
     }
   }
   return contador;
