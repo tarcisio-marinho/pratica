@@ -85,7 +85,7 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
     dis.qtd_total_vagas = qtd_total_vagas;
 
     fseek(arq, -sizeof(Disciplina), 1);
-    status = fwrite(&al, sizeof(Disciplina), 1, arq);
+    status = fwrite(&dis, sizeof(Disciplina), 1, arq);
     if(status != 1)  printf("Erro ao alterar\n");
     else  printf("Alterado\n");
 
@@ -126,7 +126,7 @@ void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz){
     status = fread(&dis, sizeof(Disciplina), 1, arq);
     dis.status = 0;
     fseek(arq, -sizeof(Disciplina), 1);
-    status = fwrite(&al, sizeof(Disciplina), 1, arq);
+    status = fwrite(&dis, sizeof(Disciplina), 1, arq);
     remover_arvore_disciplina(raiz, codigo);
     printf("Removido\n");
   }else  printf("Disciplina não cadastrado");
