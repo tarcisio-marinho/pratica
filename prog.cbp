@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="arvore.h" />
+		<Unit filename="disciplinas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="disciplinas.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -28,7 +28,7 @@ int main(){
   }
 
   dis = fopen("disciplinas.dat","r+b");
-  if(al == NULL){
+  if(dis == NULL){
     dis = fopen("disciplinas.dat", "w+b");
     posicoes2 = -1;
   }else{
