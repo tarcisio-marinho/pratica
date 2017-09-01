@@ -10,7 +10,7 @@
 
 void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
   Disciplina disciplina;
-  char codigo[11], nome[41], email[41], telefone[12];
+  char codigo[11], nome[41], horario[6], sala[5];
   int status;
 
   // recebe as informações e as valida
@@ -26,34 +26,34 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
     fgets(codigo, 10, stdin);getchar();
   }
 
-  printf("\nNome: ");
+  printf("\nNome da disciplina: ");
   fgets(nome, 40, stdin);
   while(valida_nome(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
     fgets(nome, 40, stdin);getchar();
   }
 
-  printf("\nemail: ");
-  fgets(email, 40, stdin);
-  while(valida_email(email) != 0){
-    printf("\nemail inválido, insira novamente: ");
-    fgets(email, 40, stdin);getchar();
+  printf("\nhorario da disciplina: ");
+  fgets(horario, 5, stdin);
+  while(valida_horario(horario) != 0){
+    printf("\nhorario inválido, insira novamente: ");
+    fgets(horario, 5, stdin);getchar();
   }
 
-  printf("\ntelefone: ");
-  fgets(telefone, 11, stdin);
-  while(valida_telefone(telefone) != 0){
-    printf("\ntelefone inválido, insira novamente: ");
-    fgets(telefone, 11, stdin);getchar();
+  printf("\nsala da disciplina: ");
+  fgets(sala, 4, stdin);
+  while(valida_sala(sala) != 0){
+    printf("\nsala inválido, insira novamente: ");
+    fgets(sala, 4, stdin);getchar();
   }
 
   // terminou as validações, copia para a struct e salva em arquivo
   strcpy(disciplina.codigo, codigo);
   strcpy(disciplina.nome, nome);
-  strcpy(disciplina.email, email);
-  strcpy(disciplina.telefone, telefone);
-  disciplina.media = 0.0;
-  disciplina.qtd_disciplinas_codigodo = 0;
+  strcpy(disciplina.horario, horario);
+  strcpy(disciplina.sala, sala);
+  disciplina.qtd_total_vagas = 30;
+  disciplina.qtd_vagas_ocupadas = 0;
   disciplina.status = 1;
 
   fseek(arq, 0, 2);
@@ -67,22 +67,22 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
 
 
 void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
-  int pos, status;
-  char email[40], nome[40], telefone[11];
+  int pos, status, qtd_total_vagas;
+  char sala[5], nome[40];
   Disciplina dis;
   pos = busca_arvore_disciplina(raiz, codigo);
   if(pos != -1){
     fseek(arq, pos*sizeof(Disciplina), 0);
-    printf("\nNome: ");
+    printf("\nnovo Nome: ");
     fgets(nome, 40, stdin);
-    printf("\nemail: ");
-    fgets(email, 40, stdin);
-    printf("\ntelefone: ");
-    fgets(telefone, 11, stdin); // VALIDACOES
+    printf("\nnova Sala: ");
+    fgets(sala, 4, stdin);
+    printf("\nnova quantidade total de vagas: ");
+    scanf("%d", &qtd_total_vagas); // VALIDACOES
 
     strcpy(dis.nome, nome);
-    strcpy(dis.email, email);
-    strcpy(dis.telefone, telefone);
+    strcpy(dis.sala, sala);
+    dis.qtd_total_vagas = qtd_total_vagas;
 
     fseek(arq, -sizeof(Disciplina), 1);
     status = fwrite(&al, sizeof(Disciplina), 1, arq);
@@ -105,12 +105,11 @@ void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
     if(status != 1)  printf("Erro ao ler");
     else{
       printf("\nNome: %s\n", dis.nome);
-      printf("Telefone: %s", dis.telefone);
-      printf("Email: %s\n", dis.email);
-      printf("Quantidade disciplinas codigodo: %d", dis.qtd_disciplinas_codigodo);
-      printf("Media: %f", dis.media);
+      printf("horario: %s\n", dis.horario);
+      printf("sala: %s\n", dis.sala);
+      printf("quantidade de vagas disponiveis: %d\n", dis.qtd_total_vagas - dis.qtd_vagas_ocupadas);
     }
-  }else  printf("Disciplina não cadastrado\n");
+  }else  printf("Disciplina não cadastrada\n");
 }
 
 
