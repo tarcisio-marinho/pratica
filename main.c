@@ -9,7 +9,7 @@
 //#include "matricula.h"
 
 void alunoss(FILE *arq, NOaluno **alunos, int pos);
-void disciplinas(FILE *arq, NOdisciplina * *disciplinas);
+void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int pos);
 //void matriculas(FILE *al, NOaluno * *alunos, FILE *dis, NOdisciplina * &disciplinas);
 
 int main(){
@@ -45,7 +45,7 @@ int main(){
     if(op == 1){
       alunoss(al, &alunos, posicoes);
     }else if(op == 2){
-      disciplinas(dis, &disciplina);
+      disciplinass(dis, &disciplinas, posicoes2);
     }else if(op == 3){
       //matriculas(al, &alunos, dis, &disciplina);
     }else if(op == 4){
@@ -104,7 +104,7 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
   }
 }
 
-void disciplinas(FILE *arq, NOdisciplina * *disciplinas){
+void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int pos){
   int op;
   char codigo[8];
   system("clear");
