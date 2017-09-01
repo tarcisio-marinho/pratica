@@ -15,8 +15,8 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos);
 int main(){
   int op;
   int posicoes;
-  NOaluno *alunos;
-  NOdisciplina *disciplinas;
+  NOaluno *alunos = NULL;
+  NOdisciplina *disciplinas = NULL;
   FILE *al, *dis;
 
   al = fopen("alunos.dat","r+b");
@@ -38,7 +38,7 @@ int main(){
     printf("1) Alunos \n");
     printf("2) Disciplinas \n");
     printf("3) Matrícula \nEscolha: ");
-    scanf("%d", &op);fflush(stdin);
+    scanf("%d", &op);fflush(stdin);getchar();
 
     if(op == 1){
       alunoss(al, &alunos, posicoes);
@@ -64,7 +64,7 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
     printf("2) alterar aluno\n");
     printf("3) exibir aluno\n");
     printf("4) remover aluno \n5) voltar\nEscolha: ");
-    scanf("%d", &op);fflush(stdin);
+    scanf("%d", &op);fflush(stdin);getchar();
 
     if(op == 1){
       cadastrar_aluno(arq, alunos, pos);

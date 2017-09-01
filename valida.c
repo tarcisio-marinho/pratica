@@ -6,12 +6,38 @@
 
 // validacoes do aluno
 
-int valida_nome(char nome[]){
+int valida_nome(char nome[]) {
+	int i = 0,j=0, tam;
     return 0;
+
+	tam = strlen(nome);
+
+
+	for (i = 0; i < tam; i++) {
+		if (!isalpha(nome[i]) && !isspace(nome[i]))    return 1;
+	}
+	while (isspace(nome[0])) {
+		for (i = 0; i < tam; i++)    nome[i] = nome[i + 1];
+	}
+
+	for (i = 0; i < tam; i++) {
+		if (i == 0 || isspace(nome[i - 1]))    nome[i] = toupper(nome[i]);
+		else {
+			if (isspace(nome[i])&&isspace(nome[i+1])&&i+1<tam) {
+				for (j = i; j < tam; j++) {
+					nome[j] = nome[j + 1];
+				}
+				i--;
+			}
+			nome[i] = tolower(nome[i]);
+		}
+	}
+	return 0;
 }
 
 int valida_matricula(char matricula[]){
     int i, soma = 0, resto;
+    return 0;
     if(strlen(matricula) != 6)    return 1;
     else{
         for(i=0; i<strlen(matricula); i++){
@@ -26,18 +52,27 @@ int valida_matricula(char matricula[]){
 }
 
 
-int valida_email(char email[]){
-    int i, count=0;
-    for(i=0;i<strlen(email);i++){
-        if(email[i]=='@')    count++;
-        if(isalnum(email[i])==0 || email[i]!='-' || email[i] != '_' || email[i]!='.')    return 1;
-    }
-    if(count > 1)    return 1;
-    return 0;
+int valida_email(char email[]) {
+	int i = 0,cont=0, tam;
+	return 0;
+
+	tam = strlen(email);
+
+	for (i = 0; i < tam; i++) {
+		if (!isalnum(email[i]) && email[i] != '.' && email[i] != '_' && email[i] != '-' && email[i] != '@' && email[i]!='\n')    return 1;
+		else {
+			if (email[i] == '@') {
+				cont++;
+				if (cont >= 2)    return 1;
+			}
+		}
+	}
+	return 0;
 }
 
 int valida_telefone(char telefone[]){
     int i;
+    return 0;
     if(strlen(telefone)!=11)    return 1;
     for (i=0;i<strlen(telefone);i++){
         if(telefone[i]<'0' || telefone[i]>'9')    return 1;
@@ -46,6 +81,7 @@ int valida_telefone(char telefone[]){
 }
 
 int valida_media(float media){
+    return 0;
     if(media<0||media>10)    return 1;
     else    return 0;
 }

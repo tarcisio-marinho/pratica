@@ -80,7 +80,7 @@ int busca_arvore_aluno(NOaluno *raiz, char matricula[]){ // retorna a posicao
 
 int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
   int status, contador = -1;
-  Aluno *al;
+  Aluno al;
   fseek(alunos, 0, 0);
   while(1){
     status = fread(&al, sizeof(Aluno), 1, alunos);
@@ -92,7 +92,7 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
       }
     }else{
       contador++;
-      inserir_arvore_aluno(*raiz, al->matricula, contador);
+      inserir_arvore_aluno(*raiz, al.matricula, contador);
     }
   }
   return contador;
