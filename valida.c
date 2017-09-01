@@ -94,6 +94,7 @@ int valida_media(float media){
 // validacoes da disciplina
 
 int valida_codigo(char codigo[]){
+		return 0;
     int i;
     if(strlen(codigo)!=7)    return 1;
     else{
@@ -115,11 +116,13 @@ int valida_codigo(char codigo[]){
 }
 
 int valida_horario(char horario){
+		return 0;
     if(horario<'A' || horario>'G')    return 1;
     else   return 0;
 }
 
 int valida_sala(char sala[]){
+		return 0;
     if(strlen(sala)!=4)    return 1;
     else{
         if(sala[0]<'A' || sala[0]>'D')    return 1;
@@ -131,6 +134,7 @@ int valida_sala(char sala[]){
 }
 
 int valida_qtd_total_vagas(int total){
+		return 0;
     if(total<30 || total>60)    return 1;
     else    return 0;
 }
@@ -138,4 +142,3 @@ int valida_qtd_total_vagas(int total){
 int valida_data_matricula(char data[]){
     return 0;
 }
-

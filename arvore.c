@@ -116,20 +116,20 @@ void remove_tudo_disciplina(NOdisciplina ** raiz){
   if (raiz != NULL){
     remove_tudo_disciplina(&(*raiz)->esq);
     remove_tudo_disciplina(&(*raiz)->dir);
-    free(raiz);
+    free(*raiz);
   }
 }
 
 int remover_arvore_disciplina(NOdisciplina **raiz, char codigo[]){
   if (*raiz == NULL)  return -1; // não achou
-  else if (strcmp((*raiz)->codigo, codigo) == 0)  remover_no_disciplina(&(*raiz));
+  else if (strcmp(codigo, (*raiz)->codigo) == 0)  remover_no_aluno(&(*raiz));
   else{
-    if (strcmp((*raiz)->codigo, codigo) > 0)  remover_arvore_disciplina(&((*raiz)->esq),codigo);
+    if (strcmp(codigo, (*raiz)->codigo) < 0)  remover_arvore_disciplina(&((*raiz)->esq),codigo);
     else  remover_arvore_disciplina(&((*raiz)->dir),codigo);
   }
 }
 
-NOdisciplina * maior_disciplina(NOdisciplina **raiz){
+NOdisciplina * maior_disciplina(NOdisciplina ** raiz){
   NOdisciplina * aux;
   aux = *raiz;
   if (aux->dir == NULL){
@@ -138,7 +138,6 @@ NOdisciplina * maior_disciplina(NOdisciplina **raiz){
   }
   else  return maior_disciplina(&((*raiz)->dir));
 }
-
 
 void remover_no_disciplina(NOdisciplina **raiz){
   NOdisciplina * pos;
@@ -150,11 +149,13 @@ void remover_no_disciplina(NOdisciplina **raiz){
   else if ((*raiz)->dir == NULL) // Não tem filho a direita
     *raiz = (*raiz)->esq;
   else{
-    pos = maior_disciplina(&((*raiz)->esq));
+    pos = maior_aluno(&((*raiz)->esq));
     strcpy((*raiz)->codigo, pos->codigo);
   }
   free (pos);
 }
+
+
 
 
 void inserir_arvore_disciplina(NOdisciplina **raiz, char codigo[], int pos){
@@ -173,21 +174,31 @@ void inserir_arvore_disciplina(NOdisciplina **raiz, char codigo[], int pos){
 
 
 int busca_arvore_disciplina(NOdisciplina *raiz, char codigo[]){ // retorna a posicao
-
-
   if(raiz == NULL)  return -1; // não achou
   else{
-    if(strcmp(raiz->codigo, codigo) == 0)  return raiz->pos;
+    if(strcmp(raiz->codigo, codigo) == 0)  return raiz->pos; // achou a posicao do aluno
     else if(strcmp(raiz->codigo, codigo) > 0) return busca_arvore_disciplina(raiz->esq, codigo);
-    else if(strcmp(raiz->codigo, codigo) < 0) return busca_arvore_disciplina(raiz->dir,codigo);
+    else if(strcmp(raiz->codigo, codigo) < 0) return busca_arvore_disciplina(raiz->dir, codigo);
   }
 }
 
 
-
-
-int montar_arvore_disciplina(NOdisciplina **raiz, FILE *disciplinas){
-    return 0;
+int montar_arvore_disciplina(NOdisciplina **raiz, FILE *disciplina){
+  int status, contador = -1;
+  Disciplina dis;
+  fseek(disciplina, 0, 0);
+  while(1){
+    status = fread(&dis, sizeof(Disciplina), 1, disciplina);
+    if(status != 1){
+      if(!feof(disciplina)){
+          break;
+      }else{
+          break;
+      }
+    }else{
+      contador++;
+      inserir_arvore_disciplina(raiz, dis.codigo, contador);
+    }
+  }
+  return contador;
 }
-
-/// comaadsoas

@@ -4,17 +4,17 @@
 #include "arvore.h"
 #include "types.h"
 #include "valida.h"
+#include "disciplinas.h"
 
-//#include "disciplinas.h"
 //#include "matricula.h"
 
 void alunoss(FILE *arq, NOaluno **alunos, int pos);
-//void disciplinas(FILE *arq, NOdisciplina * &disciplinas);
-//void matriculas(FILE *al, NOaluno * &alunos, FILE *dis, NOdisciplina * &disciplinas);
+void disciplinas(FILE *arq, NOdisciplina * *disciplinas);
+//void matriculas(FILE *al, NOaluno * *alunos, FILE *dis, NOdisciplina * &disciplinas);
 
 int main(){
   int op;
-  int posicoes;
+  int posicoes, posicoes2;
   NOaluno *alunos = NULL;
   NOdisciplina *disciplinas = NULL;
   FILE *al, *dis;
@@ -27,12 +27,14 @@ int main(){
     posicoes = montar_arvore_aluno(&alunos, al);
   }
 
-/*
   dis = fopen("disciplinas.dat","r+b");
   if(al == NULL){
     dis = fopen("disciplinas.dat", "w+b");
+    posicoes2 = -1;
+  }else{
+    posicoes2 = montar_arvore_disciplina(&disciplinas, dis);
   }
-*/
+
 
   while(1){
     printf("1) Alunos \n");
@@ -43,7 +45,7 @@ int main(){
     if(op == 1){
       alunoss(al, &alunos, posicoes);
     }else if(op == 2){
-      //disciplinas(dis, &disciplina);
+      disciplinas(dis, &disciplina);
     }else if(op == 3){
       //matriculas(al, &alunos, dis, &disciplina);
     }else if(op == 4){
@@ -101,7 +103,7 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
 
   }
 }
-/*
+
 void disciplinas(FILE *arq, NOdisciplina * &disciplinas){
   int op;
   char codigo[7];
@@ -110,28 +112,32 @@ void disciplinas(FILE *arq, NOdisciplina * &disciplinas){
     printf("1) cadastrar disciplina\n");
     printf("2) alterar disciplina\n");
     printf("3) exibir disciplina\n");
-    printf("4) remover disciplina \nEscolha: ");
-    scanf("%d", &op);
+    printf("4) remover disciplina \n5) retornar\nEscolha: ");
+    scanf("%d", &op);getchar();
 
     if(op == 1){
       printf("Insira a matricula da disciplina para ser cadastrada: ");
-      fgets(codigo, 10, stdin);
+      fgets(codigo, 10, stdin);getchar();
       cadastrar_disciplina(codigo);
     }
     else if(op == 2){
       printf("Insira a matricula da disciplina: ");
-      fgets(codigo, 10, stdin);
+      fgets(codigo, 10, stdin);getchar();
       alterar_disciplina(codigo);
     }
     else if(op == 3){
       printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 10, stdin);
+      fgets(codigo, 10, stdin);getchar();
       exibir_disciplina(codigo);
     }
     else if(op == 4){
       printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 10, stdin);
+      fgets(codigo, 10, stdin);getchar();
       remover_disciplina(codigo);
+    }
+    else if(op == 5){
+        manutencao_disciplina(arq);
+        return;
     }
     else{
       printf("Opção inválida\n");
@@ -139,6 +145,7 @@ void disciplinas(FILE *arq, NOdisciplina * &disciplinas){
   }
 }
 
+/*
 void matriculas(FILE *al, NOaluno * &alunos, FILE *dis, NOdisciplina * &disciplinas){
   int op;
   char codigo[7], matricula[10];
