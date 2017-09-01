@@ -145,7 +145,7 @@ int verifica_matricula(char matricula[], NOaluno *raiz){
 
 
 
-void manutencao_aluno(FILE *arq){
+void manutencao_aluno(FILE *arq){ // ṔROBLEMA NO MANUTENÇÃO
   Aluno al;
   int status;
   FILE *arq2;
