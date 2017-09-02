@@ -74,10 +74,22 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
     fseek(arq, pos*sizeof(Aluno), 0);
     printf("\nNome: ");
     fgets(nome, 40, stdin);
+    while(valida_nome(nome) != 0){
+      printf("\nNome inválido, insira novamente: ");
+      fgets(nome, 40, stdin);
+    }
     printf("\nemail: ");
     fgets(email, 40, stdin);
+    while(valida_email(email) != 0){
+      printf("\nEmail inválido, insira novamente: ");
+      fgets(email, 40, stdin);
+    }
     printf("\ntelefone: ");
     fgets(telefone, 11, stdin); // VALIDACOES
+    while(valida_telefone(telefone) != 0){
+      printf("\nTelefone inválido, insira novamente: ");
+      fgets(telefone, 11, stdin);
+    }
 
     strcpy(al.nome, nome);
     strcpy(al.email, email);

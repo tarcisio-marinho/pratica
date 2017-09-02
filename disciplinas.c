@@ -10,8 +10,8 @@
 
 void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
   Disciplina disciplina;
-  char codigo[11], nome[41], horario[6], sala[5];
-  int status;
+  char codigo[11], nome[41], horario, sala[5];
+  int status, qtd_vagas;
 
   // recebe as informações e as valida
   printf("\nInsira matriula: ");
@@ -34,10 +34,10 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
   }
 
   printf("\nhorario da disciplina: ");
-  fgets(horario, 5, stdin);
+  scanf("%c", horario);
   while(valida_horario(horario) != 0){
     printf("\nhorario inválido, insira novamente: ");
-    fgets(horario, 5, stdin);getchar();
+    scanf("%c", horario);
   }
 
   printf("\nsala da disciplina: ");
@@ -47,12 +47,19 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
     fgets(sala, 4, stdin);getchar();
   }
 
+  printf("\nQuantidade de vagas: ");
+  scanf("%d", qtd_vagas);
+  while(valida_qtd_total_vagas(qtd_vagas) != 0){
+    printf("\nQuantidade de vagas inválida, insira novamente: ");
+    scanf("%d", qtd_vagas);
+  }
+
   // terminou as validações, copia para a struct e salva em arquivo
   strcpy(disciplina.codigo, codigo);
   strcpy(disciplina.nome, nome);
   strcpy(disciplina.horario, horario);
   strcpy(disciplina.sala, sala);
-  disciplina.qtd_total_vagas = 30;
+  disciplina.qtd_total_vagas = qtd_vagas;
   disciplina.qtd_vagas_ocupadas = 0;
   disciplina.status = 1;
 
@@ -75,10 +82,22 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
     fseek(arq, pos*sizeof(Disciplina), 0);
     printf("\nnovo Nome: ");
     fgets(nome, 40, stdin);
+    while(valida_nome(nome) != 0){
+      printf("\nNome invalido, digite outro nome: ");
+      fgets(nome, 40, stdin);
+    }
     printf("\nnova Sala: ");
     fgets(sala, 4, stdin);
+    while(valida_sala(sala) != 0){
+      printf("\nSala invalida, digite outra sala: ");
+      fgets(nome, 40, stdin);
+    }
     printf("\nnova quantidade total de vagas: ");
     scanf("%d", &qtd_total_vagas); // VALIDACOES
+    while(valida_qtd_total_vagas(qtd_total_vagas) != 0){
+      printf("\nInválido, nova quantidade total de vagas: ");
+      scanf("%d", &qtd_total_vagas);
+    }
 
     strcpy(dis.nome, nome);
     strcpy(dis.sala, sala);
