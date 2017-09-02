@@ -93,7 +93,7 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
       fgets(nome, 40, stdin);
     }
     printf("\nnova quantidade total de vagas: ");
-    scanf("%d", &qtd_total_vagas);getchar();
+    scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
     while(valida_qtd_total_vagas(qtd_total_vagas) != 0){
       printf("\nInválido, nova quantidade total de vagas: ");
       scanf("%d", &qtd_total_vagas);getchar();
