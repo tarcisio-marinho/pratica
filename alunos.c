@@ -118,8 +118,8 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
       printf("\nNome: %s\n", al.nome);
       printf("Telefone: %s", al.telefone);
       printf("Email: %s\n", al.email);
-      printf("Quantidade disciplinas matriculado: %d", al.qtd_disciplinas_matriculado);
-      printf("Media: %f", al.media);
+      printf("Quantidade disciplinas matriculado: %d\n", al.qtd_disciplinas_matriculado);
+      printf("Media: %f\n", al.media);
     }
   }else  printf("Aluno não cadastrado\n");
 }

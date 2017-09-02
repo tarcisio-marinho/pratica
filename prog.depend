@@ -26,7 +26,7 @@
 	<stdio.h>
 	"types.h"
 
-1504239592 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
+1504380418 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
 	<stdio.h>
 	<string.h>
 	"types.h"
@@ -34,7 +34,7 @@
 	"alunos.h"
 	"valida.h"
 
-1504234155 /home/tarcisio/Desktop/pratica-programacao/types.h
+1504380884 /home/tarcisio/Desktop/pratica-programacao/types.h
 
 1503816856 /home/tarcisio/Desktop/pratica-programacao/arvore.h
 	<stdio.h>
@@ -47,7 +47,7 @@
 	"types.h"
 	"arvore.h"
 
-1504243811 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+1504381874 source:/home/tarcisio/Desktop/pratica-programacao/main.c
 	<stdio.h>
 	<stdlib.h>
 	"alunos.h"
@@ -72,7 +72,7 @@
 	<stdio.h>
 	"types.h"
 
-1504243480 source:/home/tarcisio/Desktop/pratica-programacao/disciplinas.c
+1504381641 source:/home/tarcisio/Desktop/pratica-programacao/disciplinas.c
 	<stdio.h>
 	<string.h>
 	"types.h"

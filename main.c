@@ -49,6 +49,8 @@ int main(){
     }else if(op == 3){
       //matriculas(al, &alunos, dis, &disciplina);
     }else if(op == 4){
+      manutencao_aluno(al);
+      manutencao_disciplina(dis);
       return 0; // aq deve ficar o codigo de manutenção
     }else{
         printf("\nOpção inválida\n");
@@ -93,7 +95,6 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
     }
 
     else if(op == 5){
-      manutencao_aluno(arq);
       return;
     }
 
@@ -120,25 +121,24 @@ void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int pos){
     }
 
     else if(op == 2){
-      printf("Insira a matricula da disciplina: ");
-      fgets(codigo, 7, stdin);getchar();
+      printf("Insira o codigo da disciplina: ");
+      fgets(codigo, 7, stdin);
       alterar_disciplina(codigo, arq, *disciplinas);
     }
 
     else if(op == 3){
-      printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 7, stdin);getchar();
+      printf("Insira o codigo da disciplina: ");
+      fgets(codigo, 7, stdin);
       exibir_disciplina(codigo, arq, *disciplinas);
     }
 
     else if(op == 4){
-      printf("Insira a codigo da disciplina: ");
-      fgets(codigo, 7, stdin);getchar();
+      printf("Insira o codigo da disciplina: ");
+      fgets(codigo, 7, stdin);
       remover_disciplina(codigo, arq, disciplinas);
     }
 
     else if(op == 5){
-      manutencao_disciplina(arq);
       return;
     }
 

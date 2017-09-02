@@ -15,7 +15,7 @@ typedef struct al{ // não podem ter 2 alunos com a mesma matricula
 typedef struct dis{
   char codigo[8]; // não pode ter disciplina com o mesmo codigo || DEVE PASSAR POR VALIDAÇÃO  || 3 primeiros = letras, 4 ultimos = numeros
   char nome[21]; // apenas conter letras e espaços
-  char horario[6];
+  char horario;
   char sala[5];
   int qtd_total_vagas; //
   int qtd_vagas_ocupadas; // começa com 0
