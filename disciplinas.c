@@ -12,17 +12,17 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
   Disciplina disciplina;
   char codigo[11], nome[41], horario, sala[5];
   int status, qtd_vagas;
+  system("clear");
 
-  // recebe as informações e as valida
   printf("\nInsira o codigo: ");
   fgets(codigo, 10, stdin);
   while (valida_codigo(codigo) != 0){
-    printf("\ncodigo inválido, insira novamente: ");
+    printf("\n[-] codigo inválido, insira novamente: ");
     fgets(codigo, 10, stdin);getchar();
   }
 
   while (verifica_codigo(codigo, *raiz) != 0){
-    printf("\ncodigo já registrado, insira outra: ");
+    printf("\n[-] codigo já registrado, insira outra: ");
     fgets(codigo, 10, stdin);getchar();
   }
 
@@ -67,8 +67,8 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
   status = fwrite(&disciplina, sizeof(Disciplina), 1, arq);
   inserir_arvore_disciplina(raiz, codigo, pos+1);
 
-  if(status != 1)  printf("\nErro ao cadastrar disciplina\n");
-  else  printf("\nCadastrado\n");
+  if(status != 1)  printf("\n[-] Erro ao cadastrar disciplina\n");
+  else  printf("\n[+] Cadastrado\n");
 }
 
 
@@ -77,27 +77,36 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
   int pos, status, qtd_total_vagas;
   char sala[5], nome[40];
   Disciplina dis;
+  system("clear");
+
   pos = busca_arvore_disciplina(raiz, codigo);
   if(pos != -1){
     fseek(arq, pos*sizeof(Disciplina), 0);
+
     printf("\nnovo Nome: ");
     fgets(nome, 40, stdin);
     while(valida_nome(nome) != 0){
       printf("\nNome invalido, digite outro nome: ");
       fgets(nome, 40, stdin);
     }
+
     printf("\nnova Sala: ");
     fgets(sala, 4, stdin);
     while(valida_sala(sala) != 0){
       printf("\nSala invalida, digite outra sala: ");
       fgets(nome, 40, stdin);
     }
+
     printf("\nnova quantidade total de vagas: ");
     scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
     while(valida_qtd_total_vagas(qtd_total_vagas) != 0){
-      printf("\nInválido, nova quantidade total de vagas: ");
-      scanf("%d", &qtd_total_vagas);getchar();
+      printf("\n[-] Inválido, nova quantidade total de vagas: ");
+      scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
     }
+    /*
+    O horario ta ficando vazio
+    qtd_vagas_ocupadas ta escroto -> -1821300544
+    */
 
     strcpy(dis.nome, nome);
     strcpy(dis.sala, sala);
@@ -105,10 +114,10 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
 
     fseek(arq, -sizeof(Disciplina), 1);
     status = fwrite(&dis, sizeof(Disciplina), 1, arq);
-    if(status != 1)  printf("Erro ao alterar\n");
-    else  printf("Alterado\n");
+    if(status != 1)  printf("[-] Erro ao alterar\n");
+    else  printf("[+] Alterado\n");
 
-  }else  printf("Disciplina inexistente\n");
+  }else  printf("[-] Disciplina inexistente\n");
 }
 
 
@@ -117,6 +126,8 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
 void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
   int pos, status;
   Disciplina dis;
+  system("clear");
+
   pos = busca_arvore_disciplina(raiz, codigo);
   if(pos != -1){
     fseek(arq, pos*sizeof(Disciplina), 0);
@@ -126,9 +137,9 @@ void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
       printf("\nNome: %s\n", dis.nome);
       printf("horario: %c\n", dis.horario);
       printf("sala: %s\n", dis.sala);
-      printf("quantidade de vagas disponiveis: %d\n", dis.qtd_total_vagas - dis.qtd_vagas_ocupadas);
+      printf("quantidade de vagas disponiveis: %d , %d\n", dis.qtd_total_vagas , dis.qtd_vagas_ocupadas);
     }
-  }else  printf("Disciplina não cadastrada\n");
+  }else  printf("[-] Disciplina não cadastrada\n");
 }
 
 
@@ -148,7 +159,7 @@ void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz){
     status = fwrite(&dis, sizeof(Disciplina), 1, arq);
     remover_arvore_disciplina(raiz, codigo);
     printf("Removido\n");
-  }else  printf("Disciplina não cadastrado");
+  }else  printf("[-] Disciplina não cadastrado");
 }
 
 

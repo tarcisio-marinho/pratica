@@ -37,6 +37,7 @@ int main(){
 
 
   while(1){
+    system("clear");
     printf("1) Alunos \n");
     printf("2) Disciplinas \n");
     printf("3) Matrícula \n4) sair\nEscolha: ");

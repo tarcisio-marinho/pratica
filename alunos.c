@@ -11,6 +11,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   Aluno aluno;
   char matricula[11], nome[41], email[41], telefone[12];
   int status;
+  system("clear");
 
   // recebe as informações e as valida
   printf("\nInsira matriula: ");
@@ -59,16 +60,18 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
   status = fwrite(&aluno, sizeof(Aluno), 1, arq);
   inserir_arvore_aluno(raiz, matricula, pos+1);
 
-  if(status != 1)  printf("\nErro ao cadastrar aluno\n");
-  else  printf("\nCadastrado\n");
+  if(status != 1)  printf("\n[-] Erro ao cadastrar aluno\n");
+  else  printf("\n[+] Cadastrado\n");
 }
 
 
 
-void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
+void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // PROBLEMA NA QUANTIDADE DE DISCIPLINA MATRICULADO
   int pos, status;
   char email[40], nome[40], telefone[11];
   Aluno al;
+  system("clear");
+
   pos = busca_arvore_aluno(raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
@@ -85,7 +88,7 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
       fgets(email, 40, stdin);
     }
     printf("\ntelefone: ");
-    fgets(telefone, 11, stdin); // VALIDACOES
+    fgets(telefone, 11, stdin);
     while(valida_telefone(telefone) != 0){
       printf("\nTelefone inválido, insira novamente: ");
       fgets(telefone, 11, stdin);
@@ -97,10 +100,10 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
-    if(status != 1)  printf("Erro ao alterar\n");
-    else  printf("Alterado\n");
+    if(status != 1)  printf("[-] Erro ao alterar\n");
+    else  printf("[+] Alterado\n");
 
-  }else  printf("Aluno inexistente\n");
+  }else  printf("[-] Aluno inexistente\n");
 }
 
 
@@ -109,6 +112,8 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
   Aluno al;
+  system("clear");
+
   pos = busca_arvore_aluno(raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
@@ -121,7 +126,7 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
       printf("Quantidade disciplinas matriculado: %d\n", al.qtd_disciplinas_matriculado);
       printf("Media: %f\n", al.media);
     }
-  }else  printf("Aluno não cadastrado\n");
+  }else  printf("[-] Aluno não cadastrado\n");
 }
 
 
@@ -132,6 +137,7 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
 void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
   int pos, status;
   Aluno al;
+
   pos = busca_arvore_aluno(*raiz, matricula);
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
@@ -140,8 +146,8 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
     remover_arvore_aluno(raiz, matricula);
-    printf("Removido\n");
-  }else  printf("Aluno não cadastrado");
+    printf("[+] Removido\n");
+  }else  printf("[-] Aluno não cadastrado");
 }
 
 
