@@ -7,7 +7,7 @@
 #include "valida.h"
 
 
-void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
+void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
   Aluno aluno;
   char matricula[11], nome[41], email[41], telefone[12];
   int status;
@@ -58,7 +58,8 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos){
 
   fseek(arq, 0, 2);
   status = fwrite(&aluno, sizeof(Aluno), 1, arq);
-  inserir_arvore_aluno(raiz, matricula, pos+1);
+  *pos+=1;
+  inserir_arvore_aluno(raiz, matricula, *pos);
 
   if(status != 1)  printf("\n[-] Erro ao cadastrar aluno\n");
   else  printf("\n[+] Cadastrado\n");
@@ -121,7 +122,7 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
     if(status != 1)  printf("Erro ao ler");
     else{
       printf("\nNome: %s\n", al.nome);
-      printf("Telefone: %s", al.telefone);
+      printf("Telefone: %s\n", al.telefone);
       printf("Email: %s\n", al.email);
       printf("Quantidade disciplinas matriculado: %d\n", al.qtd_disciplinas_matriculado);
       printf("Media: %f\n", al.media);

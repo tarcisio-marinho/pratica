@@ -8,8 +8,8 @@
 
 //#include "matricula.h"
 
-void alunoss(FILE *arq, NOaluno **alunos, int pos);
-void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int pos);
+void alunoss(FILE *arq, NOaluno **alunos, int *pos);
+void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos);
 //void matriculas(FILE *al, NOaluno * *alunos, FILE *dis, NOdisciplina * &disciplinas);
 
 int main(){
@@ -44,15 +44,17 @@ int main(){
     scanf("%d", &op);fflush(stdin);getchar();
 
     if(op == 1){
-      alunoss(al, &alunos, posicoes);
+      alunoss(al, &alunos, &posicoes);
     }else if(op == 2){
-      disciplinass(dis, &disciplinas, posicoes2);
+      disciplinass(dis, &disciplinas, &posicoes2);
     }else if(op == 3){
       //matriculas(al, &alunos, dis, &disciplina);
     }else if(op == 4){
       manutencao_aluno(al);
       manutencao_disciplina(dis);
-      return 0; // aq deve ficar o codigo de manutenção
+      //remove_tudo_aluno(&alunos);
+      //remove_tudo_disciplina(&disciplinas);
+      return 0;
     }else{
         printf("\nOpção inválida\n");
     }
@@ -62,7 +64,7 @@ int main(){
 }
 
 
-void alunoss(FILE *arq, NOaluno **alunos, int pos){
+void alunoss(FILE *arq, NOaluno **alunos, int *pos){
   int op;
   char matricula[11];
   system("clear");
@@ -106,7 +108,7 @@ void alunoss(FILE *arq, NOaluno **alunos, int pos){
   }
 }
 
-void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int pos){
+void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos){
   int op;
   char codigo[8];
   system("clear");

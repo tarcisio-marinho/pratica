@@ -3,7 +3,7 @@
 #include "types.h"
 
 
-void cadastrar_aluno(FILE *arq, NOaluno **raiz, int pos);
+void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos);
 void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz); // busca no indice do arquivo, se existir -> exibe, altera -> não existe  == STATUS == 1
 void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz); // busca no indice do arquivo, se existir -> exibe, senão -> não existe  == STATUS == 1
 void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz); // busca no indice do arquivo, se existir -> remove -> status = 0 , senão -> não existe == STATUS == 1

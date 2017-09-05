@@ -26,7 +26,7 @@
 	<stdio.h>
 	"types.h"
 
-1504383599 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
+1504572230 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
 	<stdio.h>
 	<string.h>
 	"types.h"
@@ -40,14 +40,14 @@
 	<stdio.h>
 	"types.h"
 
-1504240739 source:/home/tarcisio/Desktop/pratica-programacao/arvore.c
+1504572489 source:/home/tarcisio/Desktop/pratica-programacao/arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"types.h"
 	"arvore.h"
 
-1504383043 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+1504573247 source:/home/tarcisio/Desktop/pratica-programacao/main.c
 	<stdio.h>
 	<stdlib.h>
 	"alunos.h"
@@ -56,7 +56,7 @@
 	"valida.h"
 	"disciplinas.h"
 
-1504234231 /home/tarcisio/Desktop/pratica-programacao/alunos.h
+1504572220 /home/tarcisio/Desktop/pratica-programacao/alunos.h
 	<stdio.h>
 	"types.h"
 
@@ -68,11 +68,11 @@
 
 1504234245 /home/tarcisio/Desktop/pratica-programacao/valida.h
 
-1504241159 /home/tarcisio/Desktop/pratica-programacao/disciplinas.h
+1504572823 /home/tarcisio/Desktop/pratica-programacao/disciplinas.h
 	<stdio.h>
 	"types.h"
 
-1504383782 source:/home/tarcisio/Desktop/pratica-programacao/disciplinas.c
+1504572812 source:/home/tarcisio/Desktop/pratica-programacao/disciplinas.c
 	<stdio.h>
 	<string.h>
 	"types.h"

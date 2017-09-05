@@ -57,7 +57,7 @@ void inserir_arvore_aluno(NOaluno **raiz, char matricula[], int pos){
   if(*raiz == NULL){
     *raiz = (NOaluno*)malloc(sizeof(NOaluno));
     strcpy((*raiz)->matricula, matricula);
-    (*raiz)->pos = 0; // posicao do arquivo
+    (*raiz)->pos = pos; // posicao do arquivo
     (*raiz)->dir = NULL;
     (*raiz)->esq = NULL;
   }else{
@@ -162,7 +162,7 @@ void inserir_arvore_disciplina(NOdisciplina **raiz, char codigo[], int pos){
   if(*raiz == NULL){
     *raiz = (NOdisciplina*)malloc(sizeof(NOdisciplina));
     strcpy((*raiz)->codigo, codigo);
-    (*raiz)->pos = 0; // posicao do arquivo
+    (*raiz)->pos = pos; // posicao do arquivo
     (*raiz)->dir = NULL;
     (*raiz)->esq = NULL;
   }else{

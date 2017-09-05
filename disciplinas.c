@@ -8,7 +8,7 @@
 #include "valida.h"
 #include "disciplinas.h"
 
-void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
+void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   Disciplina disciplina;
   char codigo[11], nome[41], horario, sala[5];
   int status, qtd_vagas;
@@ -65,7 +65,8 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos){
 
   fseek(arq, 0, 2);
   status = fwrite(&disciplina, sizeof(Disciplina), 1, arq);
-  inserir_arvore_disciplina(raiz, codigo, pos+1);
+  *pos+=1;
+  inserir_arvore_disciplina(raiz, codigo, pos);
 
   if(status != 1)  printf("\n[-] Erro ao cadastrar disciplina\n");
   else  printf("\n[+] Cadastrado\n");

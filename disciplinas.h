@@ -2,7 +2,7 @@
 #include "types.h"
 
 
-void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int pos);
+void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos);
 void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz); // busca no indice do arquivo, se existir -> exibe, altera -> não existe  == STATUS == 1
 void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz); // busca no indice do arquivo, se existir -> exibe, senão -> não existe  == STATUS == 1
 void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz); // busca no indice do arquivo, se existir -> remove -> status = 0 , senão -> não existe == STATUS == 1
