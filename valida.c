@@ -6,9 +6,9 @@
 
 // validacoes do aluno
 
-int valida_nome(char nome[]) {
+int valida_nome(char *nome[]) { // passar p maiusculo e minusculo -> ta dando erro de segmentacao
 	int i = 0,j=0, tam;
-    return 0;
+	return 0;
 
 	tam = strlen(nome);
 
@@ -54,8 +54,7 @@ int valida_matricula(char matricula[]){
 
 int valida_email(char email[]) {
 	int i = 0,cont=0, tam;
-	return 0;
-
+  return 0;
 	tam = strlen(email);
 
 	for (i = 0; i < tam; i++) {
@@ -93,9 +92,9 @@ int valida_media(float media){
 
 // validacoes da disciplina
 
-int valida_codigo(char codigo[]){
-		return 0;
+int valida_codigo(char *codigo[]){ // dando erro de segmentacao
     int i;
+    return 0;
     if(strlen(codigo)!=7)    return 1;
     else{
         for (i; i<strlen(codigo); i++){
@@ -116,13 +115,13 @@ int valida_codigo(char codigo[]){
 }
 
 int valida_horario(char horario){
-		return 0;
+    return 0;
     if(horario<'A' || horario>'G')    return 1;
     else   return 0;
 }
 
 int valida_sala(char sala[]){
-		return 0;
+    return 0;
     if(strlen(sala)!=4)    return 1;
     else{
         if(sala[0]<'A' || sala[0]>'D')    return 1;
@@ -134,7 +133,6 @@ int valida_sala(char sala[]){
 }
 
 int valida_qtd_total_vagas(int total){
-		return 0;
     if(total<30 || total>60)    return 1;
     else    return 0;
 }

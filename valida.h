@@ -1,4 +1,4 @@
-int valida_nome(char nome[]);
+int valida_nome(char *nome[]);
 
 int valida_matricula(char matricula[]);
 
@@ -10,7 +10,7 @@ int valida_media(float media);
 
 // validacoes da disciplina
 
-int valida_codigo(char codigo[]);
+int valida_codigo(char *codigo[]);
 
 int valida_horario(char horario);
 

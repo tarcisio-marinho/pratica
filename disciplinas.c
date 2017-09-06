@@ -16,7 +16,7 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
 
   printf("\nInsira o codigo: ");
   fgets(codigo, 10, stdin);
-  while (valida_codigo(codigo) != 0){
+  while (valida_codigo(&codigo) != 0){
     printf("\n[-] codigo inválido, insira novamente: ");
     fgets(codigo, 10, stdin);getchar();
   }
@@ -83,6 +83,7 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
   pos = busca_arvore_disciplina(raiz, codigo);
   if(pos != -1){
     fseek(arq, pos*sizeof(Disciplina), 0);
+    status = fread(&dis, sizeof(Disciplina), 1, arq);
 
     printf("\nnovo Nome: ");
     fgets(nome, 40, stdin);
@@ -104,10 +105,6 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
       printf("\n[-] Inválido, nova quantidade total de vagas: ");
       scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
     }
-    /*
-    O horario ta ficando vazio
-    qtd_vagas_ocupadas ta escroto -> -1821300544
-    */
 
     strcpy(dis.nome, nome);
     strcpy(dis.sala, sala);

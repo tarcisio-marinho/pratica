@@ -28,7 +28,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 
   printf("\nNome: ");
   fgets(nome, 40, stdin);
-  while(valida_nome(nome) != 0){
+  while(valida_nome(&nome) != 0){
     printf("\nNome invalido, insira novamente: ");
     fgets(nome, 40, stdin);getchar();
   }
@@ -66,8 +66,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 }
 
 
-
-void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // PROBLEMA NA QUANTIDADE DE DISCIPLINA MATRICULADO
+void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
   int pos, status;
   char email[40], nome[40], telefone[11];
   Aluno al;
@@ -75,10 +74,13 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // PROBLEMA NA Q
 
   pos = busca_arvore_aluno(raiz, matricula);
   if(pos != -1){
+
     fseek(arq, pos*sizeof(Aluno), 0);
+    status = fread(&al, sizeof(Aluno), 1, arq);
+
     printf("\nNome: ");
     fgets(nome, 40, stdin);
-    while(valida_nome(nome) != 0){
+    while(valida_nome(&nome) != 0){
       printf("\nNome inválido, insira novamente: ");
       fgets(nome, 40, stdin);
     }
@@ -105,6 +107,7 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // PROBLEMA NA Q
     else  printf("[+] Alterado\n");
 
   }else  printf("[-] Aluno inexistente\n");
+
 }
 
 
