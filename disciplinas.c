@@ -135,7 +135,7 @@ void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
       printf("\nNome: %s\n", dis.nome);
       printf("horario: %c\n", dis.horario);
       printf("sala: %s\n", dis.sala);
-      printf("quantidade de vagas disponiveis: %d , %d\n", dis.qtd_total_vagas , dis.qtd_vagas_ocupadas);
+      printf("quantidade de vagas disponiveis: %d\n", dis.qtd_total_vagas - dis.qtd_vagas_ocupadas);
     }
   }else  printf("[-] Disciplina não cadastrada\n");
 }

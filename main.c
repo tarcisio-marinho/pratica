@@ -17,7 +17,7 @@ int main(){
   int posicoes, posicoes2;
   NOaluno *alunos = NULL;
   NOdisciplina *disciplinas = NULL;
-  FILE *al, *dis;
+  FILE *al, *dis, *mat;
 
   al = fopen("alunos.dat","r+b");
   if(al == NULL){
