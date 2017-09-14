@@ -145,11 +145,9 @@ void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos){
       fgets(codigo, 7, stdin);
       remover_disciplina(codigo, arq, disciplinas);
     }
-
     else if(op == 5){
       return;
     }
-
     else{
       printf("Opção inválida\n");
     }
@@ -165,8 +163,9 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
     printf("1) matricular aluno\n");
     printf("2) exclui matricula do aluno\n");
     printf("3) exibir disciplina que aluno está matriculado\n");
-    printf("4) exibir alunos matriculados numa disciplina \nEscolha: ");
-    scanf("%d", &op);
+    printf("4) exibir alunos matriculados numa disciplina\n");
+    printf("5) retornar\nEscolha: ");
+    scanf("%d", &op);getchar();fflush(stdin);
 
     if(op == 1){
       printf("\nInsira a matricula do aluno: ");
@@ -180,17 +179,19 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
       fgets(matricula, 10, stdin);
       printf("\nInsira o codigo da disciplina: ");
       fgets(codigo, 7, stdin);
-      exclui_matricula(codigo, matricula);
+      //exclui_matricula(codigo, matricula);
     }
     else if(op == 3){
       printf("\nInsira a matricula do aluno: ");
       fgets(matricula, 10, stdin);
-      exibir_disciplinas_aluno_matriculado(matricula);
+      //exibir_disciplinas_aluno_matriculado(matricula);
     }
     else if(op == 4){
       printf("\nInsira o codigo da disciplina: ");
       fgets(codigo, 10, stdin);
-      exibi_dados_alunos_matriculados_disciplina(codigo);
+      //exibi_dados_alunos_matriculados_disciplina(codigo);
+    }else if(op == 5){
+      return;
     }
     else{
       printf("\nOpção inválida\n");

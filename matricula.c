@@ -15,12 +15,12 @@
 
 // ATUALIZAR O REGISTRO DA DISCIPLINA -> VAGAS--;
 
-void matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
+void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
   Disciplina dis;
   Aluno al;
   Matricula mat;
   char horario;
-  int status, continua = 0, pos;
+  int status, pos;
 
 
 
@@ -90,7 +90,7 @@ void matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alun
 
   strcpy(mat.matricula, matricula);
   strcpy(mat.codigo, codigo);
-  mat.data = 'O'; // ARRUMAR A DATA DA MATRICULA
+  strcpy(mat.data ,"asdadsasd"); // ARRUMAR A DATA DA MATRICULA
   mat.status = 1;
 
   fseek(matriculas, 0, 2);
