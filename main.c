@@ -10,7 +10,7 @@
 
 void alunoss(FILE *arq, NOaluno **alunos, int *pos);
 void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos);
-//void matriculas(FILE *al, NOaluno * *alunos, FILE *dis, NOdisciplina * &disciplinas);
+void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *mat);
 
 int main(){
   int op;
@@ -35,6 +35,11 @@ int main(){
     posicoes2 = montar_arvore_disciplina(&disciplinas, dis);
   }
 
+  mat = fopen("matriculas.dat", "r+b");
+  if(mat == NULL){
+    mat = fopen("matriculas.dat", "w+b");
+  }
+
 
   while(1){
     system("clear");
@@ -48,7 +53,7 @@ int main(){
     }else if(op == 2){
       disciplinass(dis, &disciplinas, &posicoes2);
     }else if(op == 3){
-      //matriculas(al, &alunos, dis, &disciplina);
+      matriculas(dis, disciplinas, al, alunos, mat);
     }else if(op == 4){
       manutencao_aluno(al);
       manutencao_disciplina(dis);
@@ -151,8 +156,8 @@ void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos){
   }
 }
 
-/*
-void matriculas(FILE *al, NOaluno * &alunos, FILE *dis, NOdisciplina * &disciplinas){
+
+void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *mat){
   int op;
   char codigo[7], matricula[10];
   system("clear");
@@ -168,7 +173,7 @@ void matriculas(FILE *al, NOaluno * &alunos, FILE *dis, NOdisciplina * &discipli
       fgets(matricula, 10, stdin);
       printf("\nInsira o codigo da disciplina: ");
       fgets(codigo, 7, stdin);
-      matricula_aluno(codigo, matricula);
+      matricula_aluno(dis, codigo, disci, al, matricula, alun, mat);
     }
     else if(op == 2){
       printf("\nInsira a matricula do aluno: ");
@@ -193,4 +198,3 @@ void matriculas(FILE *al, NOaluno * &alunos, FILE *dis, NOdisciplina * &discipli
   }
 
 }
-*/

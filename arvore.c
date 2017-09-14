@@ -8,10 +8,12 @@
 ///// operacoes dos alunos
 
 void remove_tudo_aluno(NOaluno ** raiz){
+  NOaluno *aux;
   if (*raiz != NULL){
-    remove_tudo_aluno((*raiz)->esq);
-    remove_tudo_aluno((*raiz)->dir);
-    free(*raiz);
+    remove_tudo_aluno(&(*raiz)->esq);
+    aux = (*raiz);
+    remove_tudo_aluno(&(*raiz)->dir);
+    free(aux);
   }
 }
 
@@ -113,10 +115,12 @@ int montar_arvore_aluno(NOaluno **raiz, FILE *alunos){
 
 
 void remove_tudo_disciplina(NOdisciplina ** raiz){
+  NOdisciplina *aux;
   if (*raiz != NULL){
-    remove_tudo_disciplina((*raiz)->esq);
-    remove_tudo_disciplina((*raiz)->dir);
-    free(*raiz);
+    remove_tudo_disciplina(&(*raiz)->esq);
+    aux = (*raiz);
+    remove_tudo_disciplina(&(*raiz)->dir);
+    free(aux);
   }
 }
 

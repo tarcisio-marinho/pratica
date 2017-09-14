@@ -1,81 +1,58 @@
 #include<stdio.h>
 #include "matricula.h"
 #include <string.h>
+#include "alunos.h"
+#include "disciplinas.h"
 
-void matricula(FILE *disciplinas, char codigo[], FILE *alunos, char matricula[], FILE *matriculas){
+// EXISTEM VAGAS NA DISCIPLINA     *****
+// SE O ALUNO NÃO JA ESTÁ MATRICULADO NESTA DISCIPLINA
+// SE O ALUNO NÃO ESTA MATRICULADO EM OUTRA DISCIPLINA NO MESMO HORARIO
+// SE O ALUNO NÃO ATINGIU O LIMITE DE DISCIPLINAS
+
+// MEDIA < 5 -> 3 DISCIPLINAS
+// MEDIA == 5 E < 7 -> 5 DISCIPLINAS
+// MEDIA >=7 -> 6 DISCIPLINAS
+
+// ATUALIZAR O REGISTRO DA DISCIPLINA -> VAGAS--;
+
+void matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
   Disciplina dis;
   Aluno al;
   Matricula mat;
   char horario;
-  int status, continua = 0;
+  int status, continua = 0, pos;
 
-  fseek(disciplinas, 0, 0);
-  while(1){
+  pos = busca_arvore_disciplina(disci, codigo);
+  if(pos != -1){
+    fseek(disciplinas, pos*sizeof(Disciplina), 0);
     status = fread(&dis, sizeof(Disciplina), 1, disciplinas);
-    if(status != 1){
-      if(!feof(disciplinas)){
-        printf("Erro de leitura\n");
-        return;
-      }else{
-        printf("Disciplina não esta no arquivo\n");
-        return;
-      }
-    }else{
-      if(dis.status == 1 && strcmp(dis.codigo, codigo) == 0){
-        if((dis.qtd_total_vagas - dis.qtd_vagas_ocupadas) > 0){
-          continua = 1;
-          horario = dis.horario;
-          break;
-        }else{
-          printf("Disciplina está cheia\n");
-        }
-      }
+
+    if((dis.qtd_total_vagas - dis.qtd_vagas_ocupadas) <= 0){
+      printf("[-] Disciplina cheia! vagas livres: %d", dis.qtd_total_vagas - dis.qtd_vagas_ocupadas);
+      return;
     }
+
+  }else{
+    printf("[-] Disciplina inexistente\n");
+    return;
   }
 
-  if(continua == 1){
-    fseek(matriculas, 0, 0);
-    while(1){
-      status = fread(&mat, sizeof(Matricula), 1, matriculas);
-      if(status != 1){
-        if(!feof(matriculas)){
-          printf("Erro de leitura\n");
-          return;
-        }else{
-          printf("Aluno não matriculado em nenhuma disciplina\n");
-          return;
-        }
-      }else{
-        if(mat.status == 1 && strcmp(mat.matricula, matricula) == 0){ // achou o aluno no arquivo matricula
-          if(strcmp(codigo, mat.codigo) == 0){
-            printf("Aluno já matriculado nesta disciplina\n");
-            return;
-          }else  continua = 1;
-        }
+  pos = busca_arvore_aluno(alun, matricula);
+  if(pos != -1){
 
-      }
-    }
+    fseek(alunos, pos*sizeof(Aluno), 0);
+    status = fread(&al, sizeof(Aluno), 1, alunos);
+
+  }else{
+    printf("[-] Aluno inexistente\n");
+    return;
   }
-  if(continua == 1){
-    fseek(matriculas, 0, 0);
-    while(1){
-      status = fread(&mat, sizeof(Matricula), 1, matriculas);
-      if(status != 1){
-        if(!feof(matriculas)){
-          printf("Erro de leitura\n");
-          return;
-        }else{
-          printf("Aluno não matriculado em nenhuma disciplina\n");
-          return;
-        }
-      }else{
-        if(mat.status == 1 && strcmp(mat.matricula, matricula) == 0){ // achou o aluno no arquivo matricula
 
 
-        }
-      }
-    }
-  }
+
+
+
+
 }
 
 
