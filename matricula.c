@@ -94,7 +94,7 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
   mat.status = 1;
 
   fseek(matriculas, 0, 2);
-  status = fwrite(&mat, sizeof(Aluno), 1, matriculas);
+  status = fwrite(&mat, sizeof(Matricula), 1, matriculas);
   if(status != 1)  printf("\n[-] Erro ao matricular aluno\n");
   else  printf("\n[+] Matriculado\n");
 
@@ -109,6 +109,17 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
 
   if(status != 1)  printf("\n[-] Erro ao alterar a qtd de matriculados na disciplina\n");
   else  printf("\n[+] alterada a qtd de alunos na disciplina\n");
+
+  pos = busca_arvore_aluno(alun, matricula);
+  fseek(alunos, pos*sizeof(Aluno), 0);
+  status = fread(&al, sizeof(Aluno), 1, alunos);
+  al.qtd_disciplinas_matriculado++;
+
+  fseek(alunos, -sizeof(Aluno), 1);
+  status = fwrite(&al, sizeof(Aluno), 1, alunos);
+
+  if(status != 1)  printf("\n[-] Erro ao alterar a qtd de disciplinas matriculadas do aluno\n");
+  else  printf("\n[+] alterada a qtd de disciplinas matriculada do aluno\n");
 
 
 
