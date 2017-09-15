@@ -5,6 +5,8 @@
 	"types.h"
 	"arvore.h"
 
+1505420926 
+
 1503723575 /home/tarcisio/Desktop/prog/types.h
 
 1503780924 /home/tarcisio/Desktop/prog/arvore.h
@@ -56,6 +58,8 @@
 	"valida.h"
 	"disciplinas.h"
 
+1505420926 as.h"
+
 1504572220 /home/tarcisio/Desktop/pratica-programacao/alunos.h
 	<stdio.h>
 	"types.h"
@@ -91,4 +95,142 @@
 1505396095 /home/tarcisio/Desktop/pratica-programacao/matricula.h
 	<stdio.h>
 	"types.h"
+
+1505420926 source:c:\users\aluno\desktop\pratica-master\alunos.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+
+1505420926 c:\users\aluno\desktop\pratica-master\types.h
+
+1505420926 c:\users\aluno\desktop\pratica-master\arvore.h
+	<stdio.h>
+	"types.h"
+
+1505420926 c:\users\aluno\desktop\pratica-master\alunos.h
+	<stdio.h>
+	"types.h"
+
+1505420926 c:\users\aluno\desktop\pratica-master\valida.h
+
+1505420926 source:c:\users\aluno\desktop\pratica-master\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+
+1505420926 source:c:\users\aluno\desktop\pratica-master\disciplinas.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+	"disciplinas.h"
+
+1505420926 c:\users\aluno\desktop\pratica-master\disciplinas.h
+	<stdio.h>
+	"types.h"
+
+1505421103 source:c:\users\aluno\desktop\pratica-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	"alunos.h"
+	"arvore.h"
+	"types.h"
+	"valida.h"
+	"disciplinas.h"
+	"matricula.h"
+
+1505421103 .h"
+
+1505420926 source:c:\users\aluno\desktop\pratica-master\matricula.c
+	<stdio.h>
+	"matricula.h"
+	<string.h>
+	"alunos.h"
+	"disciplinas.h"
+
+1505420926 c:\users\aluno\desktop\pratica-master\matricula.h
+	<stdio.h>
+	"types.h"
+
+1505420926 source:c:\users\aluno\desktop\pratica-master\valida.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"valida.h"
+
+1505442313 source:/home/tarcisio/Desktop/pratica-master/arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+
+1505442314 /home/tarcisio/Desktop/pratica-master/types.h
+
+1505442313 /home/tarcisio/Desktop/pratica-master/arvore.h
+	<stdio.h>
+	"types.h"
+
+1505444101 source:/home/tarcisio/Desktop/pratica-master/alunos.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+
+1505442313 /home/tarcisio/Desktop/pratica-master/alunos.h
+	<stdio.h>
+	"types.h"
+
+1505442314 /home/tarcisio/Desktop/pratica-master/valida.h
+
+1505444389 source:/home/tarcisio/Desktop/pratica-master/disciplinas.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+	"disciplinas.h"
+
+1505442313 /home/tarcisio/Desktop/pratica-master/disciplinas.h
+	<stdio.h>
+	"types.h"
+
+1505443714 source:/home/tarcisio/Desktop/pratica-master/main.c
+	<stdio.h>
+	<stdlib.h>
+	"alunos.h"
+	"arvore.h"
+	"types.h"
+	"valida.h"
+	"disciplinas.h"
+	"matricula.h"
+
+1505442313 /home/tarcisio/Desktop/pratica-master/matricula.h
+	<stdio.h>
+	"types.h"
+
+1505442590 source:/home/tarcisio/Desktop/pratica-master/matricula.c
+	<stdio.h>
+	"matricula.h"
+	<string.h>
+	"alunos.h"
+	"disciplinas.h"
+	<time.h>
+
+1505442743 source:/home/tarcisio/Desktop/pratica-master/valida.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"valida.h"
+	<math.h>
 

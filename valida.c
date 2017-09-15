@@ -3,6 +3,7 @@
 #include<string.h>
 #include<ctype.h>
 #include"valida.h"
+#include<math.h>
 
 // validacoes do aluno
 
@@ -11,7 +12,6 @@ int valida_nome(char *nome[]) { // passar p maiusculo e minusculo -> ta dando er
 	return 0;
 
 	tam = strlen(nome);
-
 
 	for (i = 0; i < tam; i++) {
 		if (!isalpha(nome[i]) && !isspace(nome[i]))    return 1;

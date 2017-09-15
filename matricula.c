@@ -3,11 +3,12 @@
 #include <string.h>
 #include "alunos.h"
 #include "disciplinas.h"
+#include <time.h>
 
 // EXISTEM VAGAS NA DISCIPLINA     ***
-// SE O ALUNO N√ÉO JA EST√Å MATRICULADO NESTA DISCIPLINA ***
-// SE O ALUNO N√ÉO ESTA MATRICULADO EM OUTRA DISCIPLINA NO MESMO HORARIO ***
-// SE O ALUNO N√ÉO ATINGIU O LIMITE DE DISCIPLINAS ***
+// SE O ALUNO N√O JA EST¡ MATRICULADO NESTA DISCIPLINA ***
+// SE O ALUNO N√O ESTA MATRICULADO EM OUTRA DISCIPLINA NO MESMO HORARIO ***
+// SE O ALUNO N√O ATINGIU O LIMITE DE DISCIPLINAS ***
 
 // MEDIA < 5 -> 3 DISCIPLINAS
 // MEDIA == 5 E < 7 -> 5 DISCIPLINAS
@@ -15,12 +16,29 @@
 
 // ATUALIZAR O REGISTRO DA DISCIPLINA -> VAGAS--;
 
+void getData(char data[]){
+	struct tm *local;
+	int dia, mes, ano;
+	time_t t;
+
+	t = time(NULL);
+	local = localtime(&t);
+	dia = local->tm_mday;
+	mes = local->tm_mon+1;
+	ano = local->tm_year+1900;
+
+	sprintf(data, "%02d/%02d/%d", dia,mes,ano);
+}
+
 void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
   Disciplina dis;
   Aluno al;
   Matricula mat;
   char horario;
   int status, pos;
+  char data[11];
+  getData(data);
+
 
 
 
@@ -55,7 +73,7 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
     else{
       if(mat.status == 1 && strcmp(mat.matricula, matricula) == 0){
         if(strcmp(mat.codigo, codigo) == 0){
-          printf("Aluno j√° matriculado nesta disciplina\n");
+          printf("Aluno j· matriculado nesta disciplina\n");
           return;
         }
 
@@ -64,7 +82,7 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
           fseek(disciplinas, pos*sizeof(Disciplina), 0);
           status = fread(&dis, sizeof(Disciplina), 1, disciplinas);
           if(horario == dis.horario){
-            printf("Aluno j√° matriculado em outra disciplina no mesmo horario\n");
+            printf("Aluno j· matriculado em outra disciplina no mesmo horario\n");
             return;
           }
         }
@@ -79,18 +97,37 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
     fseek(alunos, pos*sizeof(Aluno), 0);
     status = fread(&al, sizeof(Aluno), 1, alunos);
 
+    if(al.media<5){ // 3 disciplinas
+      if(al.qtd_disciplinas_matriculado>= 3){
+        printf("Aluno j· cadastrado em 3 disciplinas\n");
+        return;
+      }
+    }else if(al.media>5 || al.media<7){ // 5 disciplinas
+      if(al.qtd_disciplinas_matriculado>=5){
+        printf("Aluno j· cadastrado em 5 disciplinas\n");
+        return;
+      }
+    }else if(al.media>=7){ // 6 disciplinas
+      if(al.qtd_disciplinas_matriculado>=6){
+        printf("Aluno j· cadastrado em 6 disciplinas\n");
+        return;
+      }
+    }
+
     if(al.qtd_disciplinas_matriculado>6){
-      printf("O aluno j√° se matriculou em 6 disciplinas");
+      printf("O aluno j· se matriculou em 6 disciplinas");
       return;
     }
   }
 
-  // FEITA TODAS AS VERIFICA√á√ïES, MATRICULA O ALUNO NA DISCIPLINA
-  printf("Aluno est√° pronto para ser matriculado\n");
+
+
+  // FEITA TODAS AS VERIFICA«’ES, MATRICULA O ALUNO NA DISCIPLINA
+  printf("Aluno est· pronto para ser matriculado\n");
 
   strcpy(mat.matricula, matricula);
   strcpy(mat.codigo, codigo);
-  strcpy(mat.data ,"asdadsasd"); // ARRUMAR A DATA DA MATRICULA
+  strcpy(mat.data, data);
   mat.status = 1;
 
   fseek(matriculas, 0, 2);
@@ -118,9 +155,12 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
   fseek(alunos, -sizeof(Aluno), 1);
   status = fwrite(&al, sizeof(Aluno), 1, alunos);
 
-  if(status != 1)  printf("\n[-] Erro ao alterar a qtd de disciplinas matriculadas do aluno\n");
+  if(status != 1){
+    printf("\n[-] Erro ao alterar a qtd de disciplinas matriculadas do aluno\n");
+    return;
+  }
   else  printf("\n[+] alterada a qtd de disciplinas matriculada do aluno\n");
-
+  printf("\n[+] matriculado com sucesso!!\n");
 
 
 }

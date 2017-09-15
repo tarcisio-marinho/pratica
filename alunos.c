@@ -13,16 +13,16 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
   int status;
   system("clear");
 
-  // recebe as informa√ß√µes e as valida
+  // recebe as informaÁıes e as valida
   printf("\nInsira matriula: ");
   fgets(matricula, 10, stdin);
   while (valida_matricula(matricula) != 0){
-    printf("\nmatricula inv√°lida, insira novamente: ");
+    printf("\nmatricula inv·lida, insira novamente: ");
     fgets(matricula, 10, stdin);getchar();
   }
 
   while (verifica_matricula(matricula, *raiz) != 0){
-    printf("\nmatricula j√° registrada, insira outra: ");
+    printf("\nmatricula j· registrada, insira outra: ");
     fgets(matricula, 10, stdin);getchar();
   }
 
@@ -36,18 +36,18 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
   printf("\nemail: ");
   fgets(email, 40, stdin);
   while(valida_email(email) != 0){
-    printf("\nemail inv√°lido, insira novamente: ");
+    printf("\nemail inv·lido, insira novamente: ");
     fgets(email, 40, stdin);getchar();
   }
 
   printf("\ntelefone: ");
   fgets(telefone, 11, stdin);
   while(valida_telefone(telefone) != 0){
-    printf("\ntelefone inv√°lido, insira novamente: ");
+    printf("\ntelefone inv·lido, insira novamente: ");
     fgets(telefone, 11, stdin);getchar();
   }
 
-  // terminou as valida√ß√µes, copia para a struct e salva em arquivo
+  // terminou as validaÁıes, copia para a struct e salva em arquivo
   strcpy(aluno.matricula, matricula);
   strcpy(aluno.nome, nome);
   strcpy(aluno.email, email);
@@ -66,8 +66,9 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 }
 
 
-void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
+void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // ALTERAR A MEDIA
   int pos, status;
+  float media;
   char email[40], nome[40], telefone[11];
   Aluno al;
   system("clear");
@@ -81,22 +82,30 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){
     printf("\nNome: ");
     fgets(nome, 40, stdin);
     while(valida_nome(&nome) != 0){
-      printf("\nNome inv√°lido, insira novamente: ");
+      printf("\nNome inv·lido, insira novamente: ");
       fgets(nome, 40, stdin);
     }
     printf("\nemail: ");
     fgets(email, 40, stdin);
     while(valida_email(email) != 0){
-      printf("\nEmail inv√°lido, insira novamente: ");
+      printf("\nEmail inv·lido, insira novamente: ");
       fgets(email, 40, stdin);
     }
     printf("\ntelefone: ");
     fgets(telefone, 11, stdin);
     while(valida_telefone(telefone) != 0){
-      printf("\nTelefone inv√°lido, insira novamente: ");
+      printf("\nTelefone inv·lido, insira novamente: ");
       fgets(telefone, 11, stdin);
     }
 
+    printf("\nDigite a nova mÈdia: ");
+    scanf("%f",&media);fflush(stdin);getchar();
+    while(valida_media(media)!=0){
+      printf("\nDigite a nova mÈdia: ");
+      scanf("%f",&media);fflush(stdin);getchar();
+    }
+
+    al.media = media;
     strcpy(al.nome, nome);
     strcpy(al.email, email);
     strcpy(al.telefone, telefone);
@@ -128,9 +137,9 @@ void exibir_aluno(char matricula[], FILE *arq, NOaluno *raiz){
       printf("Telefone: %s\n", al.telefone);
       printf("Email: %s\n", al.email);
       printf("Quantidade disciplinas matriculado: %d\n", al.qtd_disciplinas_matriculado);
-      printf("Media: %f\n", al.media);
+      printf("Media: %.2f\n", al.media);
     }
-  }else  printf("[-] Aluno n√£o cadastrado\n");
+  }else  printf("[-] Aluno n„o cadastrado\n");
 }
 
 
@@ -151,7 +160,7 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){
     status = fwrite(&al, sizeof(Aluno), 1, arq);
     remover_arvore_aluno(raiz, matricula);
     printf("[+] Removido\n");
-  }else  printf("[-] Aluno n√£o cadastrado");
+  }else  printf("[-] Aluno n„o cadastrado");
 }
 
 

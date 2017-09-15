@@ -41,10 +41,10 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   }
 
   printf("\nsala da disciplina: ");
-  fgets(sala, 4, stdin);getchar();
+  fgets(sala, 4, stdin);
   while(valida_sala(sala) != 0){
     printf("\nsala inválido, insira novamente: ");
-    fgets(sala, 4, stdin);getchar();
+    fgets(sala, 4, stdin);
   }
 
   printf("\nQuantidade de vagas: ");
