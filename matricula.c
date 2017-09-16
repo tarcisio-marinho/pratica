@@ -166,3 +166,70 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
 }
 
 
+void exclui_matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
+  int status, pos;
+  Matricula mat;
+  Disciplina dis;
+  Aluno al;
+
+  fseek(matriculas, 0, 0);
+  while(1){
+    status = fread(&mat, sizeof(Matricula), 1, matriculas);
+    if(status !=1){
+      if(!feof(matriculas))  return;
+      else{
+        printf("\n[-] Aluno não está matriculado nesta disciplina\n");
+        return;
+      }
+    }
+    else{
+      if(mat.status = 1 && strcmp(mat.matricula, matricula) == 0 && strcmp(mat.codigo, codigo) == 0){
+        printf("\n[+] Matricula encontrada\n");
+        mat.status = 0;
+        break;
+      }
+    }
+  }
+
+  fseek(matriculas, -sizeof(Matricula), 1);
+  status = fwrite(&mat, sizeof(Matricula), 1, matriculas);
+  if(status != 1)  printf("[-] Erro ao deletar matricula\n");
+  else  printf("[+] Matrícula removida\n");
+
+
+
+  pos = busca_arvore_aluno(alun, matricula);
+  fseek(alunos, pos*sizeof(Aluno), 0);
+  status = fread(&al, sizeof(Aluno), 1, alunos);
+  al.qtd_disciplinas_matriculado--;
+
+  fseek(alunos, -sizeof(Aluno), 1);
+  status = fwrite(&al, sizeof(Aluno), 1, alunos);
+  if(status != 1){
+    printf("[-] Erro ao alterar qtd de disciplinas do aluno\n");
+    return;
+  }else  printf("[+] quantidade de disciplinas do aluno alteradas\n");
+
+
+
+  pos = busca_arvore_disciplina(disci, codigo);
+  fseek(disciplinas, pos*sizeof(Disciplina), 0);
+  status = fread(&dis, sizeof(Disciplina), 1, disciplinas);
+  dis.qtd_vagas_ocupadas--;
+
+  fseek(disciplinas, -sizeof(Disciplina), 1);
+  status = fwrite(&mat, sizeof(Disciplina), 1, disciplinas);
+  if(status != 1){
+    printf("[-] Erro ao alterar a quantidade de vagas ocupadas na disciplina\n");
+    return;
+  }else  printf("[+] Quantidade de vagas ocupadas na disciplina alteradas\n");
+
+
+  printf("\n[+] Aluno desmatriculado com sucesso\n");
+
+}
+
+
+void manutencao_matricula(FILE *matriculas){
+
+}

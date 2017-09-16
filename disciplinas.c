@@ -18,19 +18,19 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   fgets(codigo, 10, stdin);
   while (valida_codigo(&codigo) != 0){
     printf("\n[-] codigo inválido, insira novamente: ");
-    fgets(codigo, 10, stdin);getchar();
+    fgets(codigo, 10, stdin);
   }
 
   while (verifica_codigo(codigo, *raiz) != 0){
     printf("\n[-] codigo já registrado, insira outra: ");
-    fgets(codigo, 10, stdin);getchar();
+    fgets(codigo, 10, stdin);
   }
 
   printf("\nNome da disciplina: ");
   fgets(nome, 40, stdin);
   while(valida_nome(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 40, stdin);getchar();
+    fgets(nome, 40, stdin);
   }
 
   printf("\nhorario da disciplina: ");
@@ -66,7 +66,7 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   fseek(arq, 0, 2);
   status = fwrite(&disciplina, sizeof(Disciplina), 1, arq);
   *pos+=1;
-  inserir_arvore_disciplina(raiz, codigo, pos);
+  inserir_arvore_disciplina(raiz, codigo, *pos);
 
   if(status != 1)  printf("\n[-] Erro ao cadastrar disciplina\n");
   else  printf("\n[+] Cadastrado\n");

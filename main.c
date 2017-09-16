@@ -57,6 +57,7 @@ int main(){
     }else if(op == 4){
       manutencao_aluno(al);
       manutencao_disciplina(dis);
+      manutencao_matricula(mat);
       remove_tudo_aluno(&alunos);
       remove_tudo_disciplina(&disciplinas);
       return 0;
@@ -69,7 +70,7 @@ int main(){
 }
 
 void espera(){
-  printf("\n[/]Digite qualquer tecla para voltar\n");
+  printf("\n[*] Digite qualquer tecla para voltar\n");
   getchar();
 }
 
@@ -195,7 +196,7 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
       fgets(matricula, 10, stdin);
       printf("\nInsira o codigo da disciplina: ");
       fgets(codigo, 7, stdin);
-      //exclui_matricula(codigo, matricula);
+      exclui_matricula(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }
     else if(op == 3){

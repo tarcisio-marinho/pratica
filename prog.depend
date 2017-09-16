@@ -234,3 +234,72 @@
 	"valida.h"
 	<math.h>
 
+1505521276 source:/home/tarcisio/Desktop/pratica-programacao/alunos.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+
+1505444656 /home/tarcisio/Desktop/pratica-programacao/types.h
+
+1505444655 /home/tarcisio/Desktop/pratica-programacao/arvore.h
+	<stdio.h>
+	"types.h"
+
+1505444655 /home/tarcisio/Desktop/pratica-programacao/alunos.h
+	<stdio.h>
+	"types.h"
+
+1505444656 /home/tarcisio/Desktop/pratica-programacao/valida.h
+
+1505444655 source:/home/tarcisio/Desktop/pratica-programacao/arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+
+1505522043 source:/home/tarcisio/Desktop/pratica-programacao/disciplinas.c
+	<stdio.h>
+	<string.h>
+	"types.h"
+	"arvore.h"
+	"alunos.h"
+	"valida.h"
+	"disciplinas.h"
+
+1505444655 /home/tarcisio/Desktop/pratica-programacao/disciplinas.h
+	<stdio.h>
+	"types.h"
+
+1505524084 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+	<stdio.h>
+	<stdlib.h>
+	"alunos.h"
+	"arvore.h"
+	"types.h"
+	"valida.h"
+	"disciplinas.h"
+	"matricula.h"
+
+1505523652 /home/tarcisio/Desktop/pratica-programacao/matricula.h
+	<stdio.h>
+	"types.h"
+
+1505524152 source:/home/tarcisio/Desktop/pratica-programacao/matricula.c
+	<stdio.h>
+	"matricula.h"
+	<string.h>
+	"alunos.h"
+	"disciplinas.h"
+	<time.h>
+
+1505444656 source:/home/tarcisio/Desktop/pratica-programacao/valida.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"valida.h"
+	<math.h>
+

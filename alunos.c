@@ -18,33 +18,33 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
   fgets(matricula, 10, stdin);
   while (valida_matricula(matricula) != 0){
     printf("\nmatricula inválida, insira novamente: ");
-    fgets(matricula, 10, stdin);getchar();
+    fgets(matricula, 10, stdin);
   }
 
   while (verifica_matricula(matricula, *raiz) != 0){
     printf("\nmatricula já registrada, insira outra: ");
-    fgets(matricula, 10, stdin);getchar();
+    fgets(matricula, 10, stdin);
   }
 
   printf("\nNome: ");
   fgets(nome, 40, stdin);
   while(valida_nome(&nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 40, stdin);getchar();
+    fgets(nome, 40, stdin);
   }
 
   printf("\nemail: ");
   fgets(email, 40, stdin);
   while(valida_email(email) != 0){
     printf("\nemail inválido, insira novamente: ");
-    fgets(email, 40, stdin);getchar();
+    fgets(email, 40, stdin);
   }
 
   printf("\ntelefone: ");
   fgets(telefone, 11, stdin);
   while(valida_telefone(telefone) != 0){
     printf("\ntelefone inválido, insira novamente: ");
-    fgets(telefone, 11, stdin);getchar();
+    fgets(telefone, 11, stdin);
   }
 
   // terminou as validações, copia para a struct e salva em arquivo
