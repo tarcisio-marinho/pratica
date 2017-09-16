@@ -5,17 +5,6 @@
 #include "disciplinas.h"
 #include <time.h>
 
-// EXISTEM VAGAS NA DISCIPLINA     ***
-// SE O ALUNO NÃO JA ESTÁ MATRICULADO NESTA DISCIPLINA ***
-// SE O ALUNO NÃO ESTA MATRICULADO EM OUTRA DISCIPLINA NO MESMO HORARIO ***
-// SE O ALUNO NÃO ATINGIU O LIMITE DE DISCIPLINAS ***
-
-// MEDIA < 5 -> 3 DISCIPLINAS
-// MEDIA == 5 E < 7 -> 5 DISCIPLINAS
-// MEDIA >=7 -> 6 DISCIPLINAS
-
-// ATUALIZAR O REGISTRO DA DISCIPLINA -> VAGAS--;
-
 void getData(char data[]){
 	struct tm *local;
 	int dia, mes, ano;
@@ -40,6 +29,12 @@ void matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE
   getData(data);
 
 
+  // se o aluno não existir ?
+  pos = busca_arvore_aluno(alun, matricula);
+  if(pos == -1){
+    printf("[-] Aluno não cadastrado\n");
+    return;
+  }
 
 
   // EXISTEM VAGAS LIVRES NA DISCIPLINA
@@ -178,12 +173,11 @@ void exclui_matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FIL
     if(status !=1){
       if(!feof(matriculas))  return;
       else{
-        printf("\n[-] Aluno não está matriculado nesta disciplina\n");
         return;
       }
     }
     else{
-      if(mat.status = 1 && strcmp(mat.matricula, matricula) == 0 && strcmp(mat.codigo, codigo) == 0){
+      if((mat.status == 1) && (strcmp(mat.matricula, matricula) == 0) && (strcmp(mat.codigo, codigo) == 0)){
         printf("\n[+] Matricula encontrada\n");
         mat.status = 0;
         break;
@@ -230,6 +224,62 @@ void exclui_matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FIL
 }
 
 
-void manutencao_matricula(FILE *matriculas){
+void manutencao_matricula(FILE *arq){
+  Matricula mat;
+  int status;
+  FILE *arq2;
+  arq2 = fopen("matriculas2.dat", "w+b");
+  fseek(arq, 0, 0);
+  while(1){
+    status = fread(&mat, sizeof(Matricula), 1, arq);
+    if(status != 1){
 
+      if(!feof(arq))  break;
+      else  break;
+
+    }else{
+      if(mat.status == 1)  status = fwrite (&mat, sizeof (Matricula), 1, arq2);;
+    }
+  }
+  fclose(arq);
+  fclose(arq2);
+  remove("matriculas.dat");
+  rename("matriculas2.dat", "matriculas.dat");
+}
+
+void exibi_disciplinas(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
+  int status, pos;
+  Matricula mat;
+  Disciplina dis;
+  Aluno al;
+
+  pos = busca_arvore_aluno(alun, matricula);
+  if(pos == -1){
+    printf("[-] Aluno não cadastrado\n");
+    return;
+  }
+
+  fseek(matriculas, 0, 0);
+  while(1){
+    status = fread(&mat, sizeof(Matricula), 1, matriculas);
+    if(status !=1){
+      if(!feof(matriculas))  return;
+      else{
+        return;
+      }
+    }
+    else{
+      if(mat.status == 1 && strcmp(mat.matricula, matricula) == 0){
+        pos = busca_arvore_disciplina(disci, mat.codigo);
+        if(pos != -1){
+          fseek(disciplinas, pos*sizeof(Disciplina), 0);
+          status = fread(&dis, sizeof(Disciplina), 1, disciplinas);
+          printf("\nCódigo da disciplina: %s",dis.codigo);
+          printf("\nNome da disciplina: %s",dis.nome);
+          printf("\nHorario da disciplina: %c",dis.horario);
+          printf("\nSala da disciplina: %s\n",dis.sala);
+        }
+      }
+    }
+  }
 }
