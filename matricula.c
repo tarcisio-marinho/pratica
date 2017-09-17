@@ -274,6 +274,7 @@ void exibi_disciplinas(FILE *disciplinas, char codigo[], NOdisciplina *disci, FI
         if(pos != -1){
           fseek(disciplinas, pos*sizeof(Disciplina), 0);
           status = fread(&dis, sizeof(Disciplina), 1, disciplinas);
+          printf("\n======\n");
           printf("\nCódigo da disciplina: %s",dis.codigo);
           printf("\nNome da disciplina: %s",dis.nome);
           printf("\nHorario da disciplina: %c",dis.horario);
@@ -282,4 +283,44 @@ void exibi_disciplinas(FILE *disciplinas, char codigo[], NOdisciplina *disci, FI
       }
     }
   }
+}
+
+
+void exibi_matricula_aluno(FILE *disciplinas, char codigo[], NOdisciplina *disci, FILE *alunos, char matricula[], NOaluno *alun, FILE *matriculas){
+  int status, pos;
+  Matricula mat;
+  Disciplina dis;
+  Aluno al;
+  int qtd = 0;
+
+  pos = busca_arvore_disciplina(disci, codigo);
+  if(pos == -1){
+    printf("[-] Disciplina não cadastrada\n");
+    return;
+  }
+
+  fseek(matriculas, 0, 0);
+  while(1){
+    status = fread(&mat, sizeof(Matricula), 1, matriculas);
+    if(status !=1){
+      if(!feof(matriculas))  return;
+      else{
+        return;
+      }
+    }
+    else{
+      if(mat.status == 1 && strcmp(mat.codigo, codigo) == 0){
+        pos = busca_arvore_aluno(alun, mat.matricula);
+        if(pos != -1){
+          fseek(alunos, pos*sizeof(Aluno), 0);
+          status = fread(&al, sizeof(Aluno), 1, alunos);
+          printf("\n======\n");
+          printf("\Matricula do aluno: %s",al.matricula);
+          printf("\nNome do aluno: %s",al.nome);
+          qtd++;
+        }
+      }
+    }
+  }
+  printf("\nTotal de alunos matriculados: %d\n", &qtd);
 }

@@ -43,6 +43,8 @@ int main(){
   while(1){
     system("clear");
     printf("==== Menu ====\n");
+    printf("Total alunos: %d\n", posicoes + 1);
+    printf("Total disciplinas: %d\n", posicoes2 + 1);
     printf("1) Alunos \n");
     printf("2) Disciplinas \n");
     printf("3) Matrícula \n4) sair\nEscolha: ");
@@ -64,6 +66,7 @@ int main(){
     }else{
         printf("\nOpção inválida\n");
     }
+    espera();
   }
 
   return 0;
@@ -202,13 +205,13 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
     else if(op == 3){
       printf("\nInsira a matricula do aluno: ");
       fgets(matricula, 10, stdin);
-      //exibir_disciplinas_aluno_matriculado(matricula);
+      exibi_disciplinas(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }
     else if(op == 4){
       printf("\nInsira o codigo da disciplina: ");
       fgets(codigo, 10, stdin);
-      //exibi_dados_alunos_matriculados_disciplina(codigo);
+      exibi_matricula_aluno(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }else if(op == 5){
       return;

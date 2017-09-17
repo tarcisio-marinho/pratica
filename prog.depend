@@ -274,7 +274,7 @@
 	<stdio.h>
 	"types.h"
 
-1505524084 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+1505614877 source:/home/tarcisio/Desktop/pratica-programacao/main.c
 	<stdio.h>
 	<stdlib.h>
 	"alunos.h"
@@ -284,11 +284,11 @@
 	"disciplinas.h"
 	"matricula.h"
 
-1505532089 /home/tarcisio/Desktop/pratica-programacao/matricula.h
+1505600331 /home/tarcisio/Desktop/pratica-programacao/matricula.h
 	<stdio.h>
 	"types.h"
 
-1505524152 source:/home/tarcisio/Desktop/pratica-programacao/matricula.c
+1505614852 source:/home/tarcisio/Desktop/pratica-programacao/matricula.c
 	<stdio.h>
 	"matricula.h"
 	<string.h>
