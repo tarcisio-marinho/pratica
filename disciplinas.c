@@ -145,7 +145,7 @@ void exibir_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
 
 
 
-void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz){
+void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz){ // só remover se não tiver alunos matriculados
   int pos, status;
   Disciplina dis;
   pos = busca_arvore_disciplina(*raiz, codigo);
