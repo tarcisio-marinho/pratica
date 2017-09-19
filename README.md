@@ -2,10 +2,14 @@
 
     Rodar em ambiente linux
     
-    download do projeto: git clone https://github.com/tarcisio-marinho/pratica.git
+# download do projeto: 
+    
+    git clone https://github.com/tarcisio-marinho/pratica.git
     
     ou simplesmente clique no botão download do github
     
+# Rodar o codigo:
+
     pode utilizar codeblocks, apenas abrindo o arquivo: prog.cbp
     
     usar o comando no terminal: codeblocks prog.cbp 
