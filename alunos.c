@@ -155,6 +155,10 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){// não pode exc
   if(pos != -1){
     fseek(arq, pos*sizeof(Aluno), 0);
     status = fread(&al, sizeof(Aluno), 1, arq);
+    if(al.qtd_disciplinas_matriculado > 0){
+      printf("[-] Aluno está matriculado em alguma matéria, não é possivel excluir\n");
+      return;
+    }
     al.status = 0;
     fseek(arq, -sizeof(Aluno), 1);
     status = fwrite(&al, sizeof(Aluno), 1, arq);
