@@ -15,41 +15,41 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   system("clear");
 
   printf("\nInsira o codigo: ");
-  fgets(codigo, 10, stdin);
-  while (valida_codigo(&codigo) != 0){
+  fgets(codigo, 11, stdin);
+  while (validar_cod_disciplina(&codigo) != 0){
     printf("\n[-] codigo inválido, insira novamente: ");
-    fgets(codigo, 10, stdin);
+    fgets(codigo, 11, stdin);
   }
 
   while (verifica_codigo(codigo, *raiz) != 0){
-    printf("\n[-] codigo já registrado, insira outra: ");
-    fgets(codigo, 10, stdin);
+    printf("\n[-] codigo já registrado\n");
+    return;
   }
 
   printf("\nNome da disciplina: ");
-  fgets(nome, 40, stdin);
-  while(valida_nome(nome) != 0){
+  fgets(nome, 41, stdin);
+  while(validar_nome_aluno_disciplina(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 40, stdin);
+    fgets(nome, 41, stdin);
   }
 
   printf("\nhorario da disciplina: ");
   scanf("%c", &horario);fflush(stdin);getchar();
-  while(valida_horario(horario) != 0){
+  while(validar_horario_disciplina(&horario) != 0){
     printf("\nhorario inválido, insira novamente: ");
     scanf("%c", &horario);fflush(stdin);getchar();
   }
 
   printf("\nsala da disciplina: ");
-  fgets(sala, 4, stdin);
-  while(valida_sala(sala) != 0){
+  fgets(sala, 5, stdin);
+  while(validar_qtd_vagas(sala) != 0){
     printf("\nsala inválido, insira novamente: ");
-    fgets(sala, 4, stdin);
+    fgets(sala, 5, stdin);
   }
 
   printf("\nQuantidade de vagas: ");
   scanf("%d", &qtd_vagas);fflush(stdin);getchar();
-  while(valida_qtd_total_vagas(qtd_vagas) != 0){
+  while(validar_qtd_vagas(qtd_vagas) != 0){
     printf("\nQuantidade de vagas inválida, insira novamente: ");
     scanf("%d", &qtd_vagas);fflush(stdin);getchar();
   }
@@ -86,22 +86,22 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
     status = fread(&dis, sizeof(Disciplina), 1, arq);
 
     printf("\nnovo Nome: ");
-    fgets(nome, 40, stdin);
-    while(valida_nome(nome) != 0){
+    fgets(nome, 41, stdin);
+    while(validar_nome_aluno_disciplina(nome) != 0){
       printf("\nNome invalido, digite outro nome: ");
-      fgets(nome, 40, stdin);
+      fgets(nome, 41, stdin);
     }
 
     printf("\nnova Sala: ");
-    fgets(sala, 4, stdin);
-    while(valida_sala(sala) != 0){
+    fgets(sala, 5, stdin);
+    while(validar_sala_disciplina(sala) != 0){
       printf("\nSala invalida, digite outra sala: ");
-      fgets(nome, 40, stdin);
+      fgets(nome, 5, stdin);
     }
 
     printf("\nnova quantidade total de vagas: ");
     scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
-    while(valida_qtd_total_vagas(qtd_total_vagas) != 0){
+    while(validar_qtd_vagas(qtd_total_vagas) != 0){
       printf("\n[-] Inválido, nova quantidade total de vagas: ");
       scanf("%d", &qtd_total_vagas);fflush(stdin);getchar();
     }

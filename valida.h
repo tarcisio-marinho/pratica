@@ -1,21 +1,10 @@
-int valida_nome(char *nome[]);
-
-int valida_matricula(char matricula[]);
-
-int valida_email(char email[]);
-
-int valida_telefone(char telefone[]);
-
-int valida_media(float media);
-
-// validacoes da disciplina
-
-int valida_codigo(char *codigo[]);
-
-int valida_horario(char horario);
-
-int valida_sala(char sala[]);
-
-int valida_qtd_total_vagas(int total);
-
-int valida_data_matricula(char data[]);
+int validar_nome_aluno_disciplina(char nome[]);
+int validar_sala_disciplina(char sala[]);
+int validar_qtd_vagas(int qtd_vagas);
+int validar_media(float media);
+int validar_telefone(char tel[]);
+int validar_email(char email[]);
+int validar_matricula(char matricula[]);
+int validar_horario_disciplina(char *letra);
+int validar_cod_disciplina(char codigo[]);
+void converte_data(char data[], int aux[]);

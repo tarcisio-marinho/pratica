@@ -15,36 +15,36 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 
   // recebe as informações e as valida
   printf("\nInsira matriula: ");
-  fgets(matricula, 10, stdin);
-  while (valida_matricula(matricula) != 0){
+  fgets(matricula, 11, stdin);
+  while (validar_matricula(matricula) != 0){
     printf("\nmatricula inválida, insira novamente: ");
-    fgets(matricula, 10, stdin);
+    fgets(matricula, 11, stdin);
   }
 
   while (verifica_matricula(matricula, *raiz) != 0){
-    printf("\nmatricula já registrada, insira outra: ");
-    fgets(matricula, 10, stdin);
+    printf("\nmatricula já registrada\n");
+    return;
   }
 
   printf("\nNome: ");
-  fgets(nome, 40, stdin);
-  while(valida_nome(&nome) != 0){
+  fgets(nome, 41, stdin);
+  while(validar_nome_aluno_disciplina(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 40, stdin);
+    fgets(nome, 41, stdin);
   }
 
   printf("\nemail: ");
-  fgets(email, 40, stdin);
-  while(valida_email(email) != 0){
+  fgets(email, 41, stdin);
+  while(validar_email(email) != 0){
     printf("\nemail inválido, insira novamente: ");
-    fgets(email, 40, stdin);
+    fgets(email, 41, stdin);
   }
 
   printf("\ntelefone: ");
-  fgets(telefone, 11, stdin);
-  while(valida_telefone(telefone) != 0){
+  fgets(telefone, 12, stdin);
+  while(validar_telefone(telefone) != 0){
     printf("\ntelefone inválido, insira novamente: ");
-    fgets(telefone, 11, stdin);
+    fgets(telefone, 12, stdin);
   }
 
   // terminou as validações, copia para a struct e salva em arquivo
@@ -80,27 +80,27 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // ALTERAR A MED
     status = fread(&al, sizeof(Aluno), 1, arq);
 
     printf("\nNome: ");
-    fgets(nome, 40, stdin);
-    while(valida_nome(&nome) != 0){
+    fgets(nome, 41, stdin);
+    while(validar_nome_aluno_disciplina(nome) != 0){
       printf("\nNome inválido, insira novamente: ");
-      fgets(nome, 40, stdin);
+      fgets(nome, 41, stdin);
     }
     printf("\nemail: ");
-    fgets(email, 40, stdin);
-    while(valida_email(email) != 0){
+    fgets(email, 41, stdin);
+    while(validar_email(email) != 0){
       printf("\nEmail inválido, insira novamente: ");
-      fgets(email, 40, stdin);
+      fgets(email, 41, stdin);
     }
     printf("\ntelefone: ");
-    fgets(telefone, 11, stdin);
-    while(valida_telefone(telefone) != 0){
+    fgets(telefone, 12, stdin);
+    while(validar_telefone(telefone) != 0){
       printf("\nTelefone inválido, insira novamente: ");
-      fgets(telefone, 11, stdin);
+      fgets(telefone, 12, stdin);
     }
 
     printf("\nDigite a nova média: ");
     scanf("%f",&media);fflush(stdin);getchar();
-    while(valida_media(media)!=0){
+    while(validar_media(media)!=0){
       printf("\nDigite a nova média: ");
       scanf("%f",&media);fflush(stdin);getchar();
     }
