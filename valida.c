@@ -70,20 +70,19 @@ int validar_qtd_vagas(int qtd_vagas) {
 }
 
 int validar_email(char email[]) {
-	return 0;
 	int i;
 	int ctt = 0;
 	if (email[0] == '\0') {
 		return -2;
 	}
-	for (i = 0; i < 31; i++) {
+	for (i = 0; i < strlen(email); i++) {
 		if (email[i] == '\0') {
 			break;
 		}
 		if (email[i] == '@') {
 			ctt++;
 		}
-		else if ((isalnum(email[i]) == 0) && email[i] != '.' && email[i] != '_' && email[i] != '-') {
+		else if (!(isdigit(email[i]) || isalpha(email[i]) || '.' || '-' || '_' || '@')) {
 			return -1;
 		}
 	}
@@ -96,17 +95,16 @@ int validar_email(char email[]) {
 }
 
 int validar_telefone(char tel[]) {
-	return 0;
 	int i;
 	for (i = 0; i < 12; i++) {
 		if (tel[i] == '\0') {
 			if (i < 11) {
-				return -2;			//quantidade errada
+				return -2;
 			}
-			return 0;				//tudo azul
+			return 0;
 		}
 		if (isdigit(tel[i]) == 0) {
-			return -1;              //parametros errados
+			return -1;
 		}
 	}
 }
