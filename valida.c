@@ -61,7 +61,6 @@ int validar_nome_aluno_disciplina(char nome[]) {
 }
 
 int validar_qtd_vagas(int qtd_vagas) {
-	return 0;
 	if (qtd_vagas < 30 || qtd_vagas > 60) {
 		return -1;
 	}
@@ -129,7 +128,6 @@ int validar_matricula(char matricula[]) {
 	int tamanho;
 	int soma = 0;
 	int result;
-	return 0;
 	tamanho = strlen(matricula);
 	if (tamanho != 10) {
 		return -1;

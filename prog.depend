@@ -274,7 +274,7 @@
 	<stdio.h>
 	"types.h"
 
-1506311176 source:/home/tarcisio/Desktop/pratica-programacao/main.c
+1506311778 source:/home/tarcisio/Desktop/pratica-programacao/main.c
 	<stdio.h>
 	<stdlib.h>
 	"alunos.h"
@@ -296,7 +296,7 @@
 	"disciplinas.h"
 	<time.h>
 
-1506310035 source:/home/tarcisio/Desktop/pratica-programacao/valida.c
+1506311939 source:/home/tarcisio/Desktop/pratica-programacao/valida.c
 	<stdio.h>
 	<string.h>
 	<ctype.h>
