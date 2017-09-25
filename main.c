@@ -214,7 +214,7 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
     }
     else if(op == 4){
       printf("\nInsira o codigo da disciplina: ");
-      fgets(codigo, 11, stdin);fflush(stdin);getchar();
+      fgets(codigo, 8, stdin);fflush(stdin);
       exibi_matricula_aluno(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }else if(op == 5){

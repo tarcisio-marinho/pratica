@@ -157,6 +157,7 @@ void remover_disciplina(char codigo[], FILE *arq, NOdisciplina **raiz){ // só r
     status = fread(&dis, sizeof(Disciplina), 1, arq);
     if(dis.qtd_vagas_ocupadas > 0){
       printf("[-] Disciplina contem alunos matriculados, não é possivel remover\n");
+      return;
     }
     dis.status = 0;
     fseek(arq, -sizeof(Disciplina), 1);

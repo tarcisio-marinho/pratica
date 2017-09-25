@@ -171,7 +171,7 @@ void remover_aluno(char matricula[], FILE *arq, NOaluno **raiz){// não pode exc
     status = fwrite(&al, sizeof(Aluno), 1, arq);
     remover_arvore_aluno(raiz, matricula);
     printf("[+] Removido\n");
-  }else  printf("[-] Aluno não cadastrado");
+  }else  printf("[-] Aluno não cadastrado\n");
 }
 
 
