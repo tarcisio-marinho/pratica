@@ -202,6 +202,3 @@ void manutencao_aluno(FILE *arq){
   remove("alunos.dat");
   rename("alunos2.dat", "alunos.dat");
 }
-
-
-

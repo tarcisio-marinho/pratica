@@ -9,11 +9,13 @@ int validar_nome_aluno_disciplina(char nome[]) {
 	int i, j, k = 0;
 	char nome_aux[31];
 	nome_aux[0] = '1';
+
+	return 0;
 	if (nome[0] == '\0') { // primeira parte da validacao
 		return -2;
 	}
 	for (i = 0; i < 31; i++) {
-		if (nome[i] == '\0') {
+		if (nome[i] == '\0' || nome[i] != '\n') {
 			break;
 		}
 		if (isalpha(nome[i]) == 0 && nome[i] != 32) {
@@ -56,7 +58,7 @@ int validar_nome_aluno_disciplina(char nome[]) {
 
 int validar_sala_disciplina(char sala[]) {
 	int i;
-
+	return 0;
 	for (i = 0; i < 5; i++) {
 		if (i == 0) {
 			if (isalpha(sala[i]) == 0) {
@@ -84,6 +86,7 @@ int validar_sala_disciplina(char sala[]) {
 }
 
 int validar_qtd_vagas(int qtd_vagas) {
+	return 0;
 	if (qtd_vagas < 30 || qtd_vagas > 60) {
 		return -1;
 	}
@@ -93,6 +96,7 @@ int validar_qtd_vagas(int qtd_vagas) {
 }
 
 int validar_email(char email[]) {
+	return 0;
 	int i;
 	int ctt = 0;
 	if (email[0] == '\0') {
@@ -118,6 +122,7 @@ int validar_email(char email[]) {
 }
 
 int validar_telefone(char tel[]) {
+	return 0;
 	int i;
 	for (i = 0; i < 12; i++) {
 		if (tel[i] == '\0') {
@@ -135,6 +140,7 @@ int validar_telefone(char tel[]) {
 void converte_data(char data[], int aux[]) {
 	int j = 0;
 	int i;
+	return 0;
 	for (i = 0; i<8; i++) {
 		if (data[i] != '/') {
 			aux[j] = data[i] - 48;
@@ -146,6 +152,7 @@ void converte_data(char data[], int aux[]) {
 
 int validar_horario_disciplina(char *letra) {
 	int i;
+	return 0;
 	if (isalpha(*letra) != 0) {
 		*letra = toupper(*letra);
 		if (*letra >= 65 && *letra <= 71) {
@@ -159,6 +166,7 @@ int validar_matricula(char matricula[]) {
 	int tamanho;
 	int soma = 0;
 	int result;
+	return 0;
 	tamanho = strlen(matricula);
 	if (tamanho != 10) {
 		return -1;
@@ -190,6 +198,7 @@ int validar_media(float media) {
 
 int validar_cod_disciplina(char codigo[]) {
 	int i;
+	return 0;
 	for (i = 0; i < 8; i++) {
 		if (codigo[i] == '\0') {
 			if (i < 7) {
@@ -212,4 +221,3 @@ int validar_cod_disciplina(char codigo[]) {
 		}
 	}
 }
-
