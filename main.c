@@ -100,14 +100,14 @@ void alunoss(FILE *arq, NOaluno **alunos, int *pos){
 
     else if(op == 2){
       printf("Insira a matricula do aluno: ");
-      fgets(matricula, 11, stdin);
+      fgets(matricula, 11, stdin);getchar();
       alterar_aluno(matricula, arq, *alunos);
       espera();
     }
 
     else if(op == 3){
       printf("Insira a matricula do aluno: ");
-      fgets(matricula, 11, stdin);
+      fgets(matricula, 11, stdin);getchar();
       exibir_aluno(matricula, arq, *alunos);
       espera();
     }

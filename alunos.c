@@ -73,7 +73,7 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // ALTERAR A MEDIA
   int pos, status;
   float media;
-  char email[40], nome[40], telefone[11];
+  char email[41], nome[41], telefone[12];
   Aluno al;
   system("clear");
 
@@ -84,22 +84,22 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // ALTERAR A MED
     status = fread(&al, sizeof(Aluno), 1, arq);
 
     printf("\nNome: ");
-    fgets(nome, 41, stdin);
+    fgets(nome, 41, stdin);fflush(stdin);
     while(validar_nome_aluno_disciplina(nome) != 0){
       printf("\nNome inválido, insira novamente: ");
-      fgets(nome, 41, stdin);
+      fgets(nome, 41, stdin);fflush(stdin);
     }
     printf("\nemail: ");
-    fgets(email, 41, stdin);
+    fgets(email, 41, stdin);fflush(stdin);
     while(validar_email(email) != 0){
       printf("\nEmail inválido, insira novamente: ");
-      fgets(email, 41, stdin);
+      fgets(email, 41, stdin);fflush(stdin);
     }
     printf("\ntelefone: ");
-    fgets(telefone, 12, stdin);
+    fgets(telefone, 12, stdin);fflush(stdin);getchar();
     while(validar_telefone(telefone) != 0){
       printf("\nTelefone inválido, insira novamente: ");
-      fgets(telefone, 12, stdin);
+      fgets(telefone, 12, stdin);fflush(stdin);getchar();
     }
 
     printf("\nDigite a nova média: ");
@@ -108,6 +108,9 @@ void alterar_aluno(char matricula[], FILE *arq, NOaluno *raiz){ // ALTERAR A MED
       printf("\nDigite a nova média: ");
       scanf("%f",&media);fflush(stdin);getchar();
     }
+
+    retirarEspaco(nome);
+    organizarCaracteres(nome);
 
     al.media = media;
     strcpy(al.nome, nome);
