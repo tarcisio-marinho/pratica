@@ -15,10 +15,10 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
 
   // recebe as informações e as valida
   printf("\nInsira matriula: ");
-  fgets(matricula, 11, stdin);
+  fgets(matricula, 11, stdin);fflush(stdin);getchar();
   while (validar_matricula(matricula) != 0){
     printf("\nmatricula inválida, insira novamente: ");
-    fgets(matricula, 11, stdin);
+    fgets(matricula, 11, stdin);fflush(stdin);getchar();
   }
 
   while (verifica_matricula(matricula, *raiz) != 0){
@@ -27,25 +27,29 @@ void cadastrar_aluno(FILE *arq, NOaluno **raiz, int *pos){
   }
 
   printf("\nNome: ");
-  fgets(nome, 41, stdin);
+  fgets(nome, 41, stdin);fflush(stdin);
   while(validar_nome_aluno_disciplina(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 41, stdin);
+    fgets(nome, 41, stdin);fflush(stdin);
   }
 
   printf("\nemail: ");
-  fgets(email, 41, stdin);
+  fgets(email, 41, stdin);fflush(stdin);
   while(validar_email(email) != 0){
     printf("\nemail inválido, insira novamente: ");
-    fgets(email, 41, stdin);
+    fgets(email, 41, stdin);fflush(stdin);
   }
 
   printf("\ntelefone: ");
-  fgets(telefone, 12, stdin);
+  fgets(telefone, 12, stdin);fflush(stdin);
   while(validar_telefone(telefone) != 0){
     printf("\ntelefone inválido, insira novamente: ");
-    fgets(telefone, 12, stdin);
+    fgets(telefone, 12, stdin);fflush(stdin);
   }
+
+
+	retirarEspaco(nome);
+	organizarCaracteres(nome);
 
   // terminou as validações, copia para a struct e salva em arquivo
   strcpy(aluno.matricula, matricula);

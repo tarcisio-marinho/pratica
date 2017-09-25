@@ -3,86 +3,61 @@
 #include <ctype.h>
 #include <time.h>
 #include "valida.h"
-#include <math.h>
 
-int validar_nome_aluno_disciplina(char nome[]) {
-	int i, j, k = 0;
-	char nome_aux[31];
-	nome_aux[0] = '1';
-
-	return 0;
-	if (nome[0] == '\0') { // primeira parte da validacao
-		return -2;
+int potencia(int expo){
+	int total = 1, c;
+	for(c = 1; c <= expo; c++){
+		total *= 2;
 	}
-	for (i = 0; i < 31; i++) {
-		if (nome[i] == '\0' || nome[i] != '\n') {
-			break;
-		}
-		if (isalpha(nome[i]) == 0 && nome[i] != 32) {
-			return -1;
-		}
-	}
-	j = 0;
-	for (i = 0; i < 31; i++) { //retira os espacoes em excesso
-		if (nome[i] == '\0') {
-			if (nome[i - 1] == 32) {
-				nome_aux[j - 1] = '\0';
-				break;
-			}
-			nome_aux[j] = '\0';
-			break;
-		}
-		if (isalpha(nome[i]) != 0) {
-			nome_aux[j] = nome[i];
-			j++;
-			k = 0;
-		}
-		if (nome[i] == 32 && nome_aux[0] != '1' && k == 0) {
-			nome_aux[j] = nome[i];
-			k = 1;
-			j++;
-		}
-	}
-	strcpy(nome, nome_aux);
-	nome[0] = toupper(nome[0]);
-	for (i = 0; i < 31; i++) {
-		if (nome[i] == '\0') {
-			break;
-		}
-		if (nome[i] == 32) {
-			nome[i + 1] = toupper(nome[i + 1]);
-		}
-	}
-	return 0;
+	return total;
 }
 
-int validar_sala_disciplina(char sala[]) {
-	int i;
-	return 0;
-	for (i = 0; i < 5; i++) {
-		if (i == 0) {
-			if (isalpha(sala[i]) == 0) {
-				return -1;
-			}
-			else {
-				sala[0] = toupper(sala[0]);
-				if (sala[0] != 'A' && sala[0] != 'B' && sala[0] != 'C' && sala[0] != 'D') {
-					return -1;
+void retirarEspaco(char string[]){
+	int pos = 0, c;
+	char aux;
+	do{
+
+		if(string[pos] == ' ' && string[pos + 1] == '\0'){
+			string[pos] = '\0';
+
+		}else{
+			if( (string[0] == ' ' && string[1] != ' ')  ||  (string[pos] == ' ' && string[pos + 1] == ' ') ){
+				for(c = pos; c<strlen(string); c++){
+					string[c] = string[c + 1];
 				}
+
+			}else{
+				pos++;
 			}
 		}
-		else {
-			if (sala[i] == '\0') {
-				if (i < 4) {
-					return -1;
-				}
-				return 0;
-			}
-			if (isdigit(sala[i]) == 0) {
-				return -1;
+	}while(string[pos] != '\0');
+}
+
+void organizarCaracteres(char string[]){
+	int c, n = 0;
+
+	string[n] = toupper(string[n]);
+	n++;
+	for(c = n; c<strlen(string); c++){
+		string[c] = tolower(string[c]);
+	}
+
+}
+
+int validar_nome_aluno_disciplina(char nome[]) {
+	int c;
+
+	if(nome[0] == '\0')
+		return 1;
+
+	else{
+		for(c = 0; c < strlen(nome); c++){
+			if( !isalpha(nome[c]) && !isspace(nome[c]) ){
+				return 1;
 			}
 		}
 	}
+	return 0;
 }
 
 int validar_qtd_vagas(int qtd_vagas) {
@@ -160,7 +135,7 @@ int validar_matricula(char matricula[]) {
 		return -1;
 	}
 	for (i = 0; i < 9; i++) {
-		soma = soma + (matricula[i] - 48)*pow(2, i);
+		soma = soma + (matricula[i] - 48)*potencia(i);
 	}
 
 	result = soma % 11;
@@ -170,7 +145,6 @@ int validar_matricula(char matricula[]) {
 	else {
 		return -1;
 	}
-
 }
 
 
@@ -205,6 +179,35 @@ int validar_cod_disciplina(char codigo[]) {
 		else {
 			if (isdigit(codigo[i]) == 0) {
 				return -1; //erro pois precisa ser digito
+			}
+		}
+	}
+}
+
+int validar_sala_disciplina(char sala[]) {
+	int i;
+
+	for (i = 0; i < 5; i++) {
+		if (i == 0) {
+			if (isalpha(sala[i]) == 0) {
+				return -1;
+			}
+			else {
+				sala[0] = toupper(sala[0]);
+				if (sala[0] != 'A' && sala[0] != 'B' && sala[0] != 'C' && sala[0] != 'D') {
+					return -1;
+				}
+			}
+		}
+		else {
+			if (sala[i] == '\0') {
+				if (i < 4) {
+					return -1;
+				}
+				return 0;
+			}
+			if (isdigit(sala[i]) == 0) {
+				return -1;
 			}
 		}
 	}

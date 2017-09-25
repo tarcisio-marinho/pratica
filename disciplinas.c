@@ -10,7 +10,7 @@
 
 void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   Disciplina disciplina;
-  char codigo[11], nome[41], horario, sala[5];
+  char codigo[8], nome[41], horario, sala[5];
   int status, qtd_vagas;
   system("clear");
 

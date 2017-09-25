@@ -100,21 +100,21 @@ void alunoss(FILE *arq, NOaluno **alunos, int *pos){
 
     else if(op == 2){
       printf("Insira a matricula do aluno: ");
-      fgets(matricula, 10, stdin);
+      fgets(matricula, 11, stdin);
       alterar_aluno(matricula, arq, *alunos);
       espera();
     }
 
     else if(op == 3){
       printf("Insira a matricula do aluno: ");
-      fgets(matricula, 10, stdin);
+      fgets(matricula, 11, stdin);
       exibir_aluno(matricula, arq, *alunos);
       espera();
     }
 
     else if(op == 4){
       printf("Insira a matricula do aluno: ");
-      fgets(matricula, 10, stdin);
+      fgets(matricula, 11, stdin);
       remover_aluno(matricula, arq, alunos);
       espera();
     }
@@ -149,21 +149,21 @@ void disciplinass(FILE *arq, NOdisciplina * *disciplinas, int *pos){
 
     else if(op == 2){
       printf("Insira o codigo da disciplina: ");
-      fgets(codigo, 7, stdin);
+      fgets(codigo, 8, stdin);
       alterar_disciplina(codigo, arq, *disciplinas);
       espera();
     }
 
     else if(op == 3){
       printf("Insira o codigo da disciplina: ");
-      fgets(codigo, 7, stdin);
+      fgets(codigo, 8, stdin);
       exibir_disciplina(codigo, arq, *disciplinas);
       espera();
     }
 
     else if(op == 4){
       printf("Insira o codigo da disciplina: ");
-      fgets(codigo, 7, stdin);
+      fgets(codigo, 8, stdin);
       remover_disciplina(codigo, arq, disciplinas);
       espera();
     }
