@@ -73,8 +73,12 @@ int main(){
 }
 
 void espera(){
-  printf("\n[*] Digite qualquer tecla para voltar\n");
-  getchar();
+  char saida;
+	printf("Digite c para continuar: ");
+	do{
+		scanf(" %c", &saida);
+		saida = toupper(saida);
+	}while(saida != 'C');
 }
 
 void alunoss(FILE *arq, NOaluno **alunos, int *pos){

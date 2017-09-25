@@ -7,4 +7,3 @@ int validar_email(char email[]);
 int validar_matricula(char matricula[]);
 int validar_horario_disciplina(char *letra);
 int validar_cod_disciplina(char codigo[]);
-void converte_data(char data[], int aux[]);

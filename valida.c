@@ -137,18 +137,6 @@ int validar_telefone(char tel[]) {
 	}
 }
 
-void converte_data(char data[], int aux[]) {
-	int j = 0;
-	int i;
-	return 0;
-	for (i = 0; i<8; i++) {
-		if (data[i] != '/') {
-			aux[j] = data[i] - 48;
-			j++;
-		}
-	}
-}
-
 
 int validar_horario_disciplina(char *letra) {
 	int i;
