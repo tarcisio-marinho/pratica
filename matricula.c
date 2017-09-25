@@ -212,6 +212,12 @@ void exclui_matricula(FILE *disciplinas, char codigo[], NOdisciplina *disci, FIL
   dis.qtd_vagas_ocupadas--;
 
   fseek(disciplinas, -sizeof(Disciplina), 1);
+  status = fwrite(&dis, sizeof(Disciplina), 1, disciplinas);
+  if(status != 1){
+    printf("[-] Erro ao alterar qtd de alunos na disciplina\n");
+    return;
+  }else  printf("[+] quantidade de alunos na disciplina alterados\n");
+
   status = fwrite(&mat, sizeof(Disciplina), 1, disciplinas);
   if(status != 1){
     printf("[-] Erro ao alterar a quantidade de vagas ocupadas na disciplina\n");
