@@ -10,15 +10,15 @@
 
 void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   Disciplina disciplina;
-  char codigo[8], nome[41], horario, sala[5];
+  char codigo[8], nome[21], horario, sala[5];
   int status, qtd_vagas;
   system("clear");
 
   printf("\nInsira o codigo: ");
-  fgets(codigo, 11, stdin);
-  while (validar_cod_disciplina(&codigo) != 0){
+  fgets(codigo, 8, stdin);fflush(stdin);getchar();
+  while (validar_cod_disciplina(codigo) != 0){
     printf("\n[-] codigo inválido, insira novamente: ");
-    fgets(codigo, 11, stdin);
+    fgets(codigo, 8, stdin);fflush(stdin);getchar();
   }
 
   while (verifica_codigo(codigo, *raiz) != 0){
@@ -27,10 +27,10 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   }
 
   printf("\nNome da disciplina: ");
-  fgets(nome, 41, stdin);
+  fgets(nome, 21, stdin);fflush(stdin);
   while(validar_nome_aluno_disciplina(nome) != 0){
     printf("\nNome invalido, insira novamente: ");
-    fgets(nome, 41, stdin);
+    fgets(nome, 21, stdin);fflush(stdin);
   }
 
   printf("\nhorario da disciplina: ");
@@ -41,10 +41,10 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
   }
 
   printf("\nsala da disciplina: ");
-  fgets(sala, 5, stdin);
-  while(validar_qtd_vagas(sala) != 0){
+  fgets(sala, 5, stdin);fflush(stdin);getchar();
+  while(validar_sala_disciplina(sala) != 0){
     printf("\nsala inválido, insira novamente: ");
-    fgets(sala, 5, stdin);
+    fgets(sala, 5, stdin);fflush(stdin);getchar();
   }
 
   printf("\nQuantidade de vagas: ");
@@ -53,6 +53,9 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
     printf("\nQuantidade de vagas inválida, insira novamente: ");
     scanf("%d", &qtd_vagas);fflush(stdin);getchar();
   }
+
+  retirarEspaco(nome);
+	organizarCaracteres(nome);
 
   // terminou as validações, copia para a struct e salva em arquivo
   strcpy(disciplina.codigo, codigo);
@@ -76,7 +79,7 @@ void cadastrar_disciplina(FILE *arq, NOdisciplina **raiz, int *pos){
 
 void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
   int pos, status, qtd_total_vagas;
-  char sala[5], nome[40];
+  char sala[5], nome[21];
   Disciplina dis;
   system("clear");
 
@@ -86,10 +89,10 @@ void alterar_disciplina(char codigo[], FILE *arq, NOdisciplina *raiz){
     status = fread(&dis, sizeof(Disciplina), 1, arq);
 
     printf("\nnovo Nome: ");
-    fgets(nome, 41, stdin);
+    fgets(nome, 21, stdin);
     while(validar_nome_aluno_disciplina(nome) != 0){
       printf("\nNome invalido, digite outro nome: ");
-      fgets(nome, 41, stdin);
+      fgets(nome, 21, stdin);
     }
 
     printf("\nnova Sala: ");

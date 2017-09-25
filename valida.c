@@ -112,7 +112,6 @@ int validar_telefone(char tel[]) {
 
 int validar_horario_disciplina(char *letra) {
 	int i;
-	return 0;
 	if (isalpha(*letra) != 0) {
 		*letra = toupper(*letra);
 		if (*letra >= 65 && *letra <= 71) {
@@ -156,7 +155,6 @@ int validar_media(float media) {
 
 int validar_cod_disciplina(char codigo[]) {
 	int i;
-	return 0;
 	for (i = 0; i < 8; i++) {
 		if (codigo[i] == '\0') {
 			if (i < 7) {
