@@ -192,29 +192,29 @@ void matriculas(FILE *dis, NOdisciplina *disci, FILE *al, NOaluno *alun, FILE *m
 
     if(op == 1){
       printf("\nInsira a matricula do aluno: ");
-      fgets(matricula, 11, stdin);
+      fgets(matricula, 11, stdin);fflush(stdin);getchar();
       printf("\nInsira o codigo da disciplina: ");
-      fgets(codigo, 8, stdin);
+      fgets(codigo, 8, stdin);fflush(stdin);getchar();
       matricula_aluno(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }
     else if(op == 2){
       printf("\nInsira a matricula do aluno: ");
-      fgets(matricula, 11, stdin);
+      fgets(matricula, 11, stdin);fflush(stdin);getchar();
       printf("\nInsira o codigo da disciplina: ");
-      fgets(codigo, 8, stdin);
+      fgets(codigo, 8, stdin);fflush(stdin);getchar();
       exclui_matricula(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }
     else if(op == 3){
       printf("\nInsira a matricula do aluno: ");
-      fgets(matricula, 11, stdin);
+      fgets(matricula, 11, stdin);fflush(stdin);getchar();
       exibi_disciplinas(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }
     else if(op == 4){
       printf("\nInsira o codigo da disciplina: ");
-      fgets(codigo, 11, stdin);
+      fgets(codigo, 11, stdin);fflush(stdin);getchar();
       exibi_matricula_aluno(dis, codigo, disci, al, matricula, alun, mat);
       espera();
     }else if(op == 5){
